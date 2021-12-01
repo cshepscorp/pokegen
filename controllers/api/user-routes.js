@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Comment, Post } = require('../../models');
+const { User, Pokemon } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
