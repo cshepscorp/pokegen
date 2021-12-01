@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // create our Comment model
-class Comment extends Model {}
+class Pokemon extends Model {}
 
-Comment.init(
+Pokemon.init(
     { // defining the schema
         id: { 
             type: DataTypes.INTEGER,
@@ -12,38 +12,33 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
-        comment_text: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 // notEmpty: true, // i think this would also have worked
-                len: [1]
+                len: [30]
             }
         },
-        // need references to other associated tables
+        type: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: 'user',
-              key: 'id'
+                model: 'user',
+                key: 'id'
             }
-          },
-          post_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'post',
-              key: 'id'
-            }
-          }
+        }
     },
     { // configure the metadata
         sequelize,
         freezeTableName: true,
         underscored: true, // In Sequelize, columns are camelcase by default.
-        modelName: 'comment'
+        modelName: 'pokemon'
     }
 );
 
-module.exports = Comment;
+module.exports = Pokemon;
