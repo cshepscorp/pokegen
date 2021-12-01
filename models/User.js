@@ -10,10 +10,8 @@ class User extends Model {
   // }
 }
 
-// define table columns and configuration
 User.init(
   {
-    // define an id column
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -21,20 +19,16 @@ User.init(
       autoIncrement: true
     },
     username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 20]
-      }
+      type: DataTypes.STRING(20),
+      allowNull: false
     },
     password: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(30),
       allowNull: false,
       validate: {
-        len: [4, 30]
+        len: [4]
       }
     }
-
   },
   {
     // hooks: {
@@ -60,7 +54,7 @@ User.init(
     // use underscores instead of camel-casing (i.e. `comment_text` and not `commentText`)
     underscored: true,
     // make it so our model name stays lowercase in the database
-    modelName: 'user'
+    modelName: 'users'
   }
 );
 
