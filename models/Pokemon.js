@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Comment model
 class Pokemon extends Model {}
 
 Pokemon.init(
@@ -16,13 +15,43 @@ Pokemon.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                // notEmpty: true, // i think this would also have worked
-                len: [30]
+                len: [1, 20]
             }
         },
         type: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                len: [1, 8]
+            }
+        },
+        type2: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [1, 8]
+            }
+        },
+        ability1: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [0, 25]
+            }
+        },
+        ability2: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [0, 25]
+            }
+        },
+        ability3: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                len: [0, 25]
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
