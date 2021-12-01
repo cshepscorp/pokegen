@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS pokegen_db;
+
+CREATE DATABASE pokegen_db;

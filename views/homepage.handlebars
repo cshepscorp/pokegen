@@ -1,0 +1,15 @@
+{{#if posts.length}}
+<div class="d-flex justify-content-between">
+    <h2 class="">All Posts</h2>  
+    <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p>
+</div>
+
+{{#each posts as |post|}}
+<div class="card p-2 m-2 rounded">
+    <div class="card-body">
+        {{> post-data post }}
+        {{!-- <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
+      </div>
+</div>
+{{/each}}
+{{/if}}
