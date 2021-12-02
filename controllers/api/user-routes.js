@@ -1,10 +1,18 @@
 const router = require('express').Router();
-const { User, Pokemon } = require('../../models');
+const { User, Pokemon, Move } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
     User.findAll({
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password'] },
+        include: {
+          model: Pokemon,
+          attributes: ['id', 'name', 'type'],
+          include: {
+            model: Move,
+            attributes: ['name', 'power', 'power_points', 'pokemon_id']
+          }
+        }
     })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -22,7 +30,11 @@ router.get('/:id', (req, res) => {
     },
     include: {
       model: Pokemon,
-      attributes: ['id', 'name', 'type']
+      attributes: ['id', 'name', 'type'],
+      include: {
+        model: Move,
+        attributes: ['name', 'power', 'power_points', 'pokemon_id']
+      }
     }
   })
     .then(dbUserData => {
