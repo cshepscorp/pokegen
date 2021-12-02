@@ -1,3 +1,7 @@
+/**
+ * Currently not in use until new features are added 
+ */
+
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
