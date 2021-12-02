@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { User, Pokemon } = require('../../models');
+const { User, Pokemon, Move } = require('../../models');
 
 // GET /api/pokemon  retrieves data on all pokemon within the pokemon table.
 router.get('/', (req, res) => {
@@ -9,6 +9,10 @@ router.get('/', (req, res) => {
       {
         model: User,
         attributes: ['username']
+      },
+      {
+        model: Move,
+        attributes: ['name', 'power', 'power_points', 'pokemon_id']
       }
     ]
   })
@@ -29,6 +33,10 @@ router.get('/:id', (req, res) => {
       {
         model: User,
         attributes: ['username']
+      },
+      {
+        model: Move,
+        attributes: ['name', 'power', 'power_points', 'pokemon_id']
       }
     ]
   })

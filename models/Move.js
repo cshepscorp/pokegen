@@ -22,6 +22,10 @@ Move.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        description: {
+            type: DataTypes.STRING(200),
+            allowNull: false
+        },
         power_points: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -39,8 +43,9 @@ Move.init(
     { // configure the metadata
         sequelize,
         freezeTableName: true,
+        timestamps: false,
         underscored: true, // In Sequelize, columns are camelcase by default.
-        modelName: 'move'
+        modelName: 'moves'
     }
 );
 
