@@ -18,7 +18,7 @@ CREATE TABLE pokemon (
     ability2 VARCHAR(25),
     ability3 VARCHAR(25),
     user_id INTEGER NOT NULL,
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -30,5 +30,22 @@ CREATE TABLE moves (
     -- Power Points means number of times a move can be used
     power_points INTEGER DEFAULT 15,
     pokemon_id INTEGER NOT NULL,
-    CONSTRAINT fk_pokemon FOREIGN KEY (pokemon_id) REFERENCES pokemon(id) ON DELETE CASCADE
+    CONSTRAINT fk_pokemon FOREIGN KEY (pokemon_id) REFERENCES pokemon(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- Instead of MOVES table- we can simply, 7 types ONLY
+CREATE TABLE types (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(8),
+    CONSTRAINT fk_types FOREIGN KEY (pokemon_id) REFERENCES pokemon(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Instead of having abilities be embeded in POKEMON we can create a separate table so that users can select each one
+CREATE TABLE abilities(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ability1 STRING(20) NULL,
+    ability2 STRING(20) NULL,
+    ability3 STRING(20) NULL,
+    CONSTRAINT fk_abilities FOREIGN KEY (pokemon_id) REFERENCES pokemon(id) ON DELETE CASCADE ON UPDATE CASCADE
 );

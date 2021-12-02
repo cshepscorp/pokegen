@@ -1,6 +1,40 @@
 <section>
   <h2>Create New Pokemon</h2>
-  <form class="new-post-form">
+  {{!-- GEN 1 only avaialble 15 pokemon types- each pokemon can only be 1 --}}
+  <form action="">
+    <label for="types">Choose one Pokemon type:</label>
+    <select type="types" id="types">
+      <option value="rock">rock</option>
+      <option value="water">water</option>
+      <option value="electric">electric</option>
+      <option value="grass">grass</option>
+      <option value="poison">poison</option>
+      <option value="psychic">psychic</option>
+      <option value="fire">fire</option>
+      <option value="ground">ground</option>
+      <option value="ice">ice</option>
+      <option value="fighting">fighting</option>
+      <option value="ghost">ghost</option>
+      <option value="dragon">dragon</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  {{!-- Abilities User will be allowd to choose up to 3 --}}
+  <form action="">
+    <label for="abilities">Choose a Pokemon ability:</label>
+    <select type="abilities" id="abilities">
+      <option value="tackle">tackle</option>
+      <option value="quick_attack">quick attack</option>
+      <option value="special_attack">special attack</option>
+      <option value="normal">normal</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  {{!-- <form class="new-post-form">
     <div>
       <label for="post-title">Title</label>
       <input type="text" id="post-title" name="post-title" />
@@ -10,5 +44,5 @@
       <textarea type="text" id="post-body" name="post-body"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
-  </form>
+  </form> --}}
 </section>
