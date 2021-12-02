@@ -25,17 +25,20 @@ router.get('/:id', (req, res) => {
           attributes: ['id', 'post_text', 'user_id', 'created_at']
         }
       })
-        .then(dbUserData => {
-          if (!dbUserData) {
-            res.status(404).json({ message: 'No user found with this id' });
-            return;
-          }
-          res.json(dbUserData);
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-        });
+      .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(400).json({ message: 'No user with that email address!' });
+          return;
+        }
+    
+        const validPassword = dbUserData.checkPassword(req.body.password);
+        if (!validPassword) {
+          res.status(400).json({ message: 'Incorrect password!' });
+          return;
+        }
+    
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      });
 });
 
 // POST create a new user
@@ -45,15 +48,20 @@ router.post('/', (req, res) => {
     username: req.body.username,
     password: req.body.password
   })
-  .then(dbUserData => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
+  // .then(dbUserData => {
+  //   req.session.save(() => {
+  //     req.session.user_id = dbUserData.id;
+  //     req.session.username = dbUserData.username;
+  //     req.session.loggedIn = true;
   
-      res.json(dbUserData);
+  //     res.json(dbUserData);
+  //   });
+  // })
+  .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  })
 });
 
 // verify user during login
@@ -76,15 +84,15 @@ router.post('/login', (req, res) => {
             return;
           }
 
-          req.session.save(() => {
-            // declare session variables
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
+          // req.session.save(() => {
+          //   // declare session variables
+          //   req.session.user_id = dbUserData.id;
+          //   req.session.username = dbUserData.username;
+          //   req.session.loggedIn = true;
           
-            res.json({ user: dbUserData, message: 'You are now logged in!' });
+          res.json({ user: dbUserData, message: 'You are now logged in!' });
           
-          });  
+          //  });  
         });
   });
 // logout
