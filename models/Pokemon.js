@@ -21,8 +21,21 @@ Pokemon.init(
         type2: {
             type: DataTypes.STRING(8),
         },
+        move1: {
+            type: DataTypes.STRING(25),
+        },
+        move2: {
+            type: DataTypes.STRING(25),
+        },
+        move3: {
+            type: DataTypes.STRING(25),
+        },
+        move4: {
+            type: DataTypes.STRING(25),
+        },
         ability1: {
             type: DataTypes.STRING(25),
+            allowNull: false
         },
         ability2: {
             type: DataTypes.STRING(25),
