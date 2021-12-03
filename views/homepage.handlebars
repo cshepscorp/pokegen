@@ -1,15 +1,26 @@
-{{#if posts.length}}
-<div class="d-flex justify-content-between">
-    <h2 class="">All Posts</h2>  
-    <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p>
-</div>
-
-{{#each posts as |post|}}
-<div class="card p-2 m-2 rounded">
-    <div class="card-body">
-        {{> post-data post }}
-        {{!-- <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
-      </div>
-</div>
+{{#if pokemons.length}}
+<div class="">
+                <h2 class="text-center">User-Generated Pokemon</h2>
+                <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
+                <!-- <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p> -->
+            </div>
+{{#each pokemons }}
+<div class="card p-2 m-2 rounded shadow">
+                    <h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{type}} {{type2}}</span></em></h6>
+                    <h5 class="card-title"><a href="/post/{{id}}">{{name}}</a></h5>
+                    <img class="card-img-top p-2 card-img" src="../public/images/{{type}}.png" alt="Card image cap" >
+                    <div class="card-body">
+                            <h5 class="card-text">Moves</h5>
+                            <p class="card-text">{{move1}} {{move2}} {{move3}} {{move4}}</p>
+                            <h5 class="card-text">Agilities</h5>
+                            <p class="card-text">{{ability1}} {{ability2}} {{ability3}}</p>
+                            
+                            <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{user.username}}</span></em></h6>
+                    </div>
+                    
+                    <a href="/pokemon/{{id}}" class="stretched-link"></a>
+                    
+                </div>
+                
 {{/each}}
 {{/if}}
