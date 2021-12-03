@@ -1,14 +1,89 @@
-<section>
-  <h2>Create New Pokemon</h2>
-  <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
-    </div>
-    <div>
-      <label for="post-body">Body</label>
-      <textarea type="text" id="post-body" name="post-body"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-  </form>
-</section>
+<h2>Create New Pokemon</h2>
+{{!-- GEN 1 only avaialble 15 pokemon types- each pokemon can only be 1 --}}
+<form class="new-post-form">
+  <label for="pokemon-name">Enter your pokemon's name:</label>
+  <input type="text" name="pokemon-name" id="pokemon-name" />
+  <br><br>
+
+  <label for="types">Choose one your first Pokemon type:</label>
+  <select type="types" id="type1">
+    <option value="rock">rock</option>
+    <option value="water">water</option>
+    <option value="electric">electric</option>
+    <option value="grass">grass</option>
+    <option value="poison">poison</option>
+    <option value="psychic">psychic</option>
+    <option value="fire">fire</option>
+    <option value="ground">ground</option>
+    <option value="ice">ice</option>
+    <option value="fighting">fighting</option>
+    <option value="ghost">ghost</option>
+    <option value="dragon">dragon</option>
+  </select>
+  <br><br>
+
+  <label for="types">Choose one your second Pokemon type:</label>
+  <select type="types" id="type2">
+    <option value="rock">rock</option>
+    <option value="water">water</option>
+    <option value="electric">electric</option>
+    <option value="grass">grass</option>
+    <option value="poison">poison</option>
+    <option value="psychic">psychic</option>
+    <option value="fire">fire</option>
+    <option value="ground">ground</option>
+    <option value="ice">ice</option>
+    <option value="fighting">fighting</option>
+    <option value="ghost">ghost</option>
+    <option value="dragon">dragon</option>
+  </select>
+  <br><br>
+
+{{!-- moves --}}
+  <label for="move1">Enter your pokemon's move:</label>
+  <input type="text" name="move1" id="move1" />
+  <br><br>
+
+  <label for="move2">Enter your pokemon's move:</label>
+  <input type="text" name="move2" id="move2" />
+  <br><br>
+
+  <label for="move3">Enter your pokemon's move:</label>
+  <input type="text" name="move3" id="move3" />
+  <br><br>
+
+  <label for="move4">Enter your pokemon's move:</label>
+  <input type="text" name="move4" id="move4" />
+  <br><br>
+
+{{!-- abilities --}}
+
+  <label for="ability1">Enter your pokemon's first ability:</label>
+  <input type="text" name="ability1" id="ability1" />
+  <br><br>
+
+  <label for="ability2">Enter your pokemon's second abilities:</label>
+  <input type="text" name="ability2" id="ability2" />
+  <br><br>
+
+  <label for="ability3">Enter your pokemon's third abilities:</label>
+  <input type="text" name="ability3" id="ability3" />
+  <br><br>
+
+  <input type="submit" value="Submit">
+</form>
+
+{{!-- Abilities User will be allowd to choose up to 3 --}}
+{{!--
+
+<div>
+  <label for="post-title">Title</label>
+  <input type="text" id="post-title" name="post-title" />
+</div>
+<div>
+  <label for="post-body">Body</label>
+  <textarea type="text" id="post-body" name="post-body"></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Create</button>
+</form>
+</section> --}}
