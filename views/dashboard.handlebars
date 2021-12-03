@@ -84,9 +84,9 @@
 </section>
 
 {{#if pokemons.length}}
-<h2 class="m-3">My Posts</h2>
+<h2 class="m-3">My Pokemon</h2>
 {{#each pokemons as |pokemon|}}
-<div class="card p-2 m-2 rounded" >
+<div class="card p-2 m-2 rounded shadow" >
   <div class="card-body">
     {{> pokemon-data pokemon }}
     <a href="/dashboard/edit/{{id}}" class="edit-link">Edit Pokemon</a>

@@ -12,11 +12,6 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
           // use the ID from the session so we retrieve posts made by logged in user
           user_id: req.session.user_id
         },
-        attributes: [
-          'id','name','type','type2',
-          'move1','move2','move3','move4',
-          'ability1','ability2','ability3'
-        ],
         include: [
           {
             model: User
