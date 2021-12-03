@@ -23,6 +23,7 @@ Pokemon.init(
         },
         move1: {
             type: DataTypes.STRING(25),
+            allowNull: false
         },
         move2: {
             type: DataTypes.STRING(25),
@@ -52,12 +53,13 @@ Pokemon.init(
         }
     },    
     { // configure the metadata
-    sequelize,
-    freezeTableName: true,
-    timestamps: false, // doesn't automatically create 'createdAt' & 'updatedAt' properties.
-    underscored: true, // In Sequelize, columns are camelcase by default.
-    modelName: 'pokemon'
-  }
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        timestamps: false, // doesn't automatically create 'createdAt' & 'updatedAt' properties.
+        underscored: true, // In Sequelize, columns are camelcase by default.
+        modelName: 'pokemon'
+    }
 );
 
 module.exports = Pokemon;

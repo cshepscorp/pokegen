@@ -2,6 +2,12 @@ function addClass() {
 	var text = document.getElementById('create-blog');
 	text.classList.remove('hide');
 }
+const typeTwo = document.getElementById("type2")
+let newOpt = document.createElement("option")
+newOpt.setAttribute("value", "test")
+newOpt.textContent = "test"
+
+typeTwo.appendChild(newOpt)
 
 
 
