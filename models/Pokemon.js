@@ -1,34 +1,52 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// create our Comment model
 class Pokemon extends Model {}
 
 Pokemon.init(
     { // defining the schema
         id: { 
             type: DataTypes.INTEGER,
-            allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                // notEmpty: true, // i think this would also have worked
-                len: [30]
-            }
+            type: DataTypes.STRING(20),
+            allowNull: false
         },
         type: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataTypes.STRING(8),
+            allowNull: false
+        },
+        type2: {
+            type: DataTypes.STRING(8),
+        },
+        move1: {
+            type: DataTypes.STRING(25),
+        },
+        move2: {
+            type: DataTypes.STRING(25),
+        },
+        move3: {
+            type: DataTypes.STRING(25),
+        },
+        move4: {
+            type: DataTypes.STRING(25),
+        },
+        ability1: {
+            type: DataTypes.STRING(25),
+            allowNull: false
+        },
+        ability2: {
+            type: DataTypes.STRING(25),
+        },
+        ability3: {
+            type: DataTypes.STRING(25),
         },
         user_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             references: {
-                model: 'user',
+                model: 'users',
                 key: 'id'
             }
         }
@@ -36,6 +54,7 @@ Pokemon.init(
     { // configure the metadata
         sequelize,
         freezeTableName: true,
+        timestamps: false, // doesn't automatically create 'createdAt' & 'updatedAt' properties.
         underscored: true, // In Sequelize, columns are camelcase by default.
         modelName: 'pokemon'
     }
