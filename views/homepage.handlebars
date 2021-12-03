@@ -5,32 +5,19 @@
 
 
 <div class="pt-2">
-                <h2 class="text-center">User-Generated Pokemon</h2>
-                {{#if loggedIn}}
-                <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
-                {{else}}
-                <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
-                {{/if}}
-                <!-- <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p> -->
-            </div>
+    <h2 class="text-center">User-Generated Pokemon</h2>
+     {{#if loggedIn}}
+      <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
+     {{else}}
+     <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
+     {{/if}}
+            
+</div>
 {{#if pokemons.length}}
-{{#each pokemons }}
+{{#each pokemons as |pokemon|}}
 <div class="card p-2 m-2 rounded shadow">
-                    <h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{type}} {{type2}}</span></em></h6>
-                    <h5 class="card-title"><a href="/post/{{id}}">{{name}}</a></h5>
-                    <img class="card-img-top p-2 card-img" src="/images/{{type}}.png" alt="Card image cap" >
-                    <div class="card-body">
-                            <h5 class="card-text">Moves</h5>
-                            <p class="card-text">{{move1}} {{move2}} {{move3}} {{move4}}</p>
-                            <h5 class="card-text">Agilities</h5>
-                            <p class="card-text">{{ability1}} {{ability2}} {{ability3}}</p>
-                            
-                            <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{user.username}}</span></em></h6>
-                    </div>
-                    
-                    <a href="/pokemon/{{id}}" class="stretched-link"></a>
-                    
-                </div>
+    {{> pokemon-data pokemon }}
+</div>
                 
 {{/each}}
 {{/if}}

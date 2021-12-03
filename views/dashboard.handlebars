@@ -85,11 +85,12 @@
 
 {{#if pokemons.length}}
 <h2 class="m-3">My Posts</h2>
-{{#each pokemons}}
+{{#each pokemons as |pokemon|}}
 <div class="card p-2 m-2 rounded" >
   <div class="card-body">
-    {{> pokemon-data pokemons }}
-    <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    {{> pokemon-data pokemon }}
+    <a href="/dashboard/edit/{{id}}" class="edit-link">Edit post</a>
+  
   </div>
   
 </div>

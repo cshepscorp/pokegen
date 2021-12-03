@@ -12,6 +12,11 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
           // use the ID from the session so we retrieve posts made by logged in user
           user_id: req.session.user_id
         },
+        attributes: [
+          'id','name','type','type2',
+          'move1','move2','move3','move4',
+          'ability1','ability2','ability3'
+        ],
         include: [
           {
             model: User
@@ -23,14 +28,14 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
           // using post here but this can be named ANYTHING 
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
           // user won't be able to get to the dashboard page unless they're logged in
+          console.table(pokemons);
           res.render('dashboard', { pokemons, loggedIn: true });
-          //res.render('dashboard', { posts, loggedIn: true });
         })
         .catch(err => {
           console.log(err);
           res.status(500).json(err);
         });
-        //console.log(req.params.user_id);
+
   });
 
 router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our own middlware
