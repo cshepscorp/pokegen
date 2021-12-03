@@ -3,6 +3,8 @@ function addClass() {
 	text.classList.remove('hide');
 }
 
+
+
 async function newFormHandler(event) {
     event.preventDefault();
   
