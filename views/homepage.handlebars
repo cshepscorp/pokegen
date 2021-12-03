@@ -1,15 +1,24 @@
-{{#if posts.length}}
-<div class="d-flex justify-content-between">
-    <h2 class="">All Posts</h2>  
-    <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p>
-</div>
+<!-- Hero Section -->
+        <section class="hero">
+            <!-- <h2>Hi!<br />I'm Christy</h2> -->
+        </section>
 
-{{#each posts as |post|}}
-<div class="card p-2 m-2 rounded">
-    <div class="card-body">
-        {{> post-data post }}
-        {{!-- <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a> --}}
-      </div>
+
+<div class="pt-2">
+    <h2 class="text-center">User-Generated Pokemon</h2>
+     {{#if loggedIn}}
+      <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
+     {{else}}
+     <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
+     {{/if}}
+            
 </div>
+{{#if pokemons.length}}
+{{#each pokemons as |pokemon|}}
+<div class="card p-2 m-2 rounded shadow">
+    {{> pokemon-data pokemon }}
+    <a href="/pokemon/{{id}}" class="stretched-link"></a>
+</div>
+                
 {{/each}}
 {{/if}}
