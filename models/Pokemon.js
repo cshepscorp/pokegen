@@ -35,6 +35,7 @@ Pokemon.init(
         },
         ability1: {
             type: DataTypes.STRING(25),
+            allowNull: false
         },
         ability2: {
             type: DataTypes.STRING(25),
