@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
           // pass post objects into the homepage template
           
-          res.render('homepage', { pokemons });
+          //res.render('homepage', { pokemons });
           //console.table(pokemons);
-          //res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
+          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
           console.log(err);
@@ -57,8 +57,10 @@ router.get('/pokemon/:id', (req, res) => {
       // serialize the data
       const pokemons = dbPokemonData.get({ plain: true });
       // pass data to template
-      //res.render('single-pokemon', { pokemons, loggedIn: req.session.loggedIn});
-      res.render('single-pokemon', { pokemons });
+      res.render('single-pokemon', {
+        pokemons,
+        loggedIn: req.session.loggedIn
+      });
     })
     .catch(err => {
       console.log(err);

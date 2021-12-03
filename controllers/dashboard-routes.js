@@ -23,7 +23,7 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
           // using post here but this can be named ANYTHING 
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
           // user won't be able to get to the dashboard page unless they're logged in
-          res.render('dashboard', { pokemons });
+          res.render('dashboard', { pokemons, loggedIn: true });
           //res.render('dashboard', { posts, loggedIn: true });
         })
         .catch(err => {

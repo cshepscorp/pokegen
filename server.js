@@ -6,12 +6,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const path = require('path'); 
 
-// const helpers = require('./utils/helpers'); // for help formatting dates
+const helpers = require('./utils/helpers'); // for help formatting dates
 
 const exphbs = require('express-handlebars');
 
 // pass the helpers to the existing exphbs.create() statement
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({ helpers });
 
 const session = require('express-session');
 

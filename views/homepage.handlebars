@@ -1,14 +1,23 @@
+<!-- Hero Section -->
+        <section class="hero">
+            <!-- <h2>Hi!<br />I'm Christy</h2> -->
+        </section>
+
 {{#if pokemons.length}}
-<div class="">
+<div class="pt-2">
                 <h2 class="text-center">User-Generated Pokemon</h2>
+                {{#if loggedIn}}
+                <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
+                {{else}}
                 <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
+                {{/if}}
                 <!-- <p class=""><a href='/usersort'>sort by user</a> | <a href='/'>sort by date</a></p> -->
             </div>
 {{#each pokemons }}
 <div class="card p-2 m-2 rounded shadow">
                     <h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{type}} {{type2}}</span></em></h6>
                     <h5 class="card-title"><a href="/post/{{id}}">{{name}}</a></h5>
-                    <img class="card-img-top p-2 card-img" src="../public/images/{{type}}.png" alt="Card image cap" >
+                    <img class="card-img-top p-2 card-img" src="/images/{{type}}.png" alt="Card image cap" >
                     <div class="card-body">
                             <h5 class="card-text">Moves</h5>
                             <p class="card-text">{{move1}} {{move2}} {{move3}} {{move4}}</p>
