@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { User, Pokemon } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET /api/pokemon  retrieves data on all pokemon within the pokemon table.
 router.get('/', (req, res) => {
@@ -46,7 +47,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/pokemon creates a new instance of a pokemon within the pokemon table.
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Pokemon.create({
     name: req.body.name,
     type: req.body.type,
@@ -58,7 +59,7 @@ router.post('/', (req, res) => {
     ability1: req.body.ability1,
     ability2: req.body.ability2,
     ability3: req.body.ability3,
-    user_id: req.body.user_id
+    user_id: req.session.user_id
   })
   .then(dbPokemonData => res.json(dbPokemonData))
   .catch(err => {
@@ -80,7 +81,7 @@ router.put('/:id', (req, res) => {
     ability1: req.body.ability1,
     ability2: req.body.ability2,
     ability3: req.body.ability3,
-    user_id: req.body.user_id
+    user_id: req.session.user_id
   },
   {
     where: {
