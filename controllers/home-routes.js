@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Pokemon, User } = require('../models');
+const verifyOwner = require('../utils/verifyOwner');
 
 router.get('/', (req, res) => {
   //console.log(req.session);
@@ -38,7 +39,7 @@ router.get('/login', (req, res) => {
 router.get('/pokemon/:id', (req, res) => {
     Pokemon.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
       include: [
           {
@@ -54,10 +55,15 @@ router.get('/pokemon/:id', (req, res) => {
       }
       // serialize the data
       const pokemons = dbPokemonData.get({ plain: true });
-      // pass data to template
+      
+      // verifies that session owner is the same owner as a particular pokemon
+      const owner = verifyOwner(req.session.user_id, pokemons.user_id);
+
+      // renders single pokemon card
       res.render('single-pokemon', {
         pokemons,
-        loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn,
+        owner
       });
     })
     .catch(err => {

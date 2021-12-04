@@ -10,7 +10,9 @@
                             
                 <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{pokemons.user.username}}</span></em></h6>
         </div>
-        <h6 class="card-subtitle mb-0 muted-text text-right"><em><span><a href="/dashboard/edit/{{pokemons.id}}" class="edit-link">Edit Pokemon (only on owners dashboard)</a></span></em></h6>
+        {{#if owner}}
+        <a href="/dashboard/edit/{{pokemons.id}}" class="edit-link">Edit Pokemon</a>
+        {{/if}}
                     
 </div>
 
