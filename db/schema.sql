@@ -5,7 +5,7 @@ USE pokegen_db;
 CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(20) NOT NULL,
-    password VARCHAR(30) NOT NULL
+    password VARCHAR(100) NOT NULL
 );
 
 -- plural for pokemon is still pokemon
