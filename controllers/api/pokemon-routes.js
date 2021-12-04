@@ -69,7 +69,7 @@ router.post('/', withAuth, (req, res) => {
 });
 
 // PUT /api/pokemon/:id edits properties of an instance of a pokemon within the pokemon table by ID.
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Pokemon.update({
     name: req.body.name,
     type: req.body.type,
