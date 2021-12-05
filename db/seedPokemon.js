@@ -51,7 +51,7 @@ const pokemonData = [
       move3: "Megaton Raid",
       move4: "Mamudoon",
       ability1: "Tactical Mind",
-      abilit2: "Attack Master",
+      ability2: "Attack Master",
       ability3: "Emboldened Spirit",
       user_id: 2,
     },

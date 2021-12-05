@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         }
         ]})
         .then(dbPokemonData => {
-          const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
+          const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           // pass post objects into the homepage template
           console.table(pokemons);
           res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
