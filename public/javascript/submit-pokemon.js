@@ -1,7 +1,10 @@
 function addClass() {
 	var text = document.getElementById('create-pokemon');
 	text.classList.remove('hide');
-}
+
+  var createButton = document.getElementById('create');
+  createButton.remove();
+};
 
 async function newFormHandler(event) {
     event.preventDefault();
