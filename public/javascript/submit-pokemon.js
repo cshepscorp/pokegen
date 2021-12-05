@@ -1,11 +1,6 @@
 function addClass() {
-<<<<<<< HEAD
-	var text = document.getElementById('create-blog');
-	text.classList.remove('hide'); //do we need this? it looks irrelevant
-=======
 	var text = document.getElementById('create-pokemon');
 	text.classList.remove('hide');
->>>>>>> 448978f3b0ca5331ac358cdab8268ddea829c9e3
 }
 
 async function newFormHandler(event) {
