@@ -54,11 +54,11 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
         }
 
         // serialize the data with plain: true
-        const pokemons = dbPostData.get({ plain: true });
+        const pokemon = dbPostData.get({ plain: true });
 
         // pass data to template
         res.render('edit-pokemon', { 
-          pokemons,
+          pokemon,
           loggedIn: req.session.loggedIn
           // user will only see comments if logged in
         });
@@ -69,4 +69,5 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
     });
 
 });
+
 module.exports = router;
