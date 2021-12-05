@@ -1,6 +1,6 @@
 function addClass() {
 	var text = document.getElementById('create-blog');
-	text.classList.remove('hide');
+	text.classList.remove('hide'); //do we need this? it looks irrelevant
 }
 
 async function newFormHandler(event) {
