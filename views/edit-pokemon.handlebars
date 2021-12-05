@@ -1,22 +1,91 @@
-<article>
+<article >
   <a href="/dashboard"> &larr; Back to dashboard</a>
   <h2>
     Edit Pokemon
   </h2>
-  <form class="edit-post-form">
-    <div>
-      <input name="post-title" type="text" value="{{post.title}}" />
-    </div>
-    <div>
-      <textarea name="post-text" id="post-text">{{post.post_text}}</textarea>
-    </div>
+  <form class="edit-pokemon-form">
+    <label for="pokemon-name">   Edit your pokemon's name: </label>
+    <input type="text" name="pokemon-name" id="pokemon-name" value="{{pokemons.name}}" />
+    <br><br>
+
+    <label for="types">Choose one your first Pokemon type:</label>
+    <select type="types" id="type1">
+      <option value="" selected diasbled hidden>Select a Type</option>
+      {{#if pokemons.type}}
+      {{#each pokemons as |pokemon|}}
+      <option value="rock">rock</option>
+      <option value="water">water</option>
+      <option value="electric">electric</option>
+      <option value="grass">grass</option>
+      <option value="poison">poison</option>
+      <option value="psychic">psychic</option>
+      <option value="fire">fire</option>
+      <option value="ground">ground</option>
+      <option value="ice">ice</option>
+      <option value="fighting">fighting</option>
+      <option value="ghost">ghost</option>
+      <option value="dragon">dragon</option>
+      {{/each}}
+      {{/if}}
+    </select>
+    <br><br>
+
+    <label for="types">Choose your second Pokemon type:</label>
+    <select type="types" id="type2" value="{{pokemons.type2}}">
+      <option value="" selected diasbled hidden>Select a Type</option>
+      <option value="rock">rock</option>
+      <option value="water">water</option>
+      <option value="electric">electric</option>
+      <option value="grass">grass</option>
+      <option value="poison">poison</option>
+      <option value="psychic">psychic</option>
+      <option value="fire">fire</option>
+      <option value="ground">ground</option>
+      <option value="ice">ice</option>
+      <option value="fighting">fighting</option>
+      <option value="ghost">ghost</option>
+      <option value="dragon">dragon</option>
+    </select>
+    <br><br>
+
+    {{!-- moves --}}
+    <label for="move1">Enter your pokemon's move:</label>
+    <input type="text" name="move1" id="move1" value="{{pokemons.move1}}" />
+    <br><br>
+
+    <label for="move2">Enter your pokemon's move:</label>
+    <input type="text" name="move2" id="move2" value="{{pokemons.move2}}"/>
+    <br><br>
+
+    <label for="move3">Enter your pokemon's move:</label>
+    <input type="text" name="move3" id="move3" value="{{pokemons.move3}}" />
+    <br><br>
+
+    <label for="move4">Enter your pokemon's move:</label>
+    <input type="text" name="move4" id="move4" value="{{pokemons.move4}}" />
+    <br><br>
+
+    {{!-- abilities --}}
+
+    <label for="ability1">Enter your pokemon's first ability:</label>
+    <input type="text" name="ability1" id="ability1" value="{{pokemons.ability}}"/>
+    <br><br>
+
+    <label for="ability2">Enter your pokemon's second abilities:</label>
+    <input type="text" name="ability2" id="ability2" value="{{pokemons.ability2}}"/>
+    <br><br>
+
+    <label for="ability3">Enter your pokemon's third abilities:</label>
+    <input type="text" name="ability3" id="ability3" value="{{pokemons.ability3}}"/>
+    <br><br>
+
     {{!-- <div>
       <input name="post-text" type="text" value="{{post.post_text}}" />
     </div> --}}
     <div>
-      Posted by {{post.user.username}} on {{format_date post.created_at}}
+      {{!-- Posted by {{post.user.username}} on {{format_date post.created_at}}
       |
-      <a href="/post/{{post.id}}">{{post.comments.length}} Comment(s)</a>
+      <a href="./../{{post.id}}">{{post.comments.length}} Comment(s)</a> --}}
     </div>
     <button type="submit">Save pokemon</button>
     <button type="button" class="delete-btn">Delete pokemon</button>
@@ -24,19 +93,8 @@
 </article>
 
 
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">add comment</button>
-  </div>
-</form>
-
 {{!-- using the comments partial to list current comments --}}
-{{> comments post.comments}}
+{{!-- {{> comments post.comments}} --}}
 
-<script src="/javascript/edit-post.js"></script>
-<script src="/javascript/delete-post.js"></script>
-<script src="/javascript/comment.js"></script>
+<script src="/javascript/edit-pokemon.js"></script>
+<script src="/javascript/delete-pokemon.js"></script>
