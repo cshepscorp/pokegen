@@ -1,68 +1,34 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Pokemon, User } = require('../models');
+const verifyOwner = require('../utils/verifyOwner');
 
 router.get('/', (req, res) => {
-  console.log(req.session);
+  //console.log(req.session);
+  Pokemon.findAll({
 
-    Post.findAll({
-        attributes: [
-          'id',
-          'title',
-          'post_text',
-          'created_at'
-        ],
-        order: [['created_at', 'DESC']],
-        include: [
-          {
+    include: [ // Instead of using complex JOIN statements with SQL, we can call on Sequelize's include option to perform the join for us.
+        {
             model: User,
             attributes: ['username']
-          },
-          { model: Comment }
-        ]
-      })
-        .then(dbPostData => {
-          const posts = dbPostData.map(post => post.get({ plain: true }));
+        }
+        ]})
+        .then(dbPokemonData => {
+          const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
+          console.log(pokemons);
           // pass post objects into the homepage template
-          res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+          // console.table(pokemons);
+          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
           console.log(err);
           res.status(500).json(err);
-        });
+        })
   });
 
-  router.get('/usersort', (req, res) => {
-    console.log(req.session);
-  
-      Post.findAll({
-          attributes: [
-            'id',
-            'title',
-            'post_text',
-            'created_at',
-            'user_id'
-          ],
-          order: [['user_id']],
-          include: [
-            {
-              model: User,
-              attributes: ['username']
-            }
-          ]
-        })
-          .then(dbPostData => {
-            const posts = dbPostData.map(post => post.get({ plain: true }));
-            // pass post objects into the homepage template
-            res.render('homepage', { posts, loggedIn: req.session.loggedIn });
-          })
-          .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-          });
-    });
 
-  router.get('/login', (req, res) => {
+
+router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
       return;
@@ -71,41 +37,34 @@ router.get('/', (req, res) => {
     res.render('login');
   });
 
-  router.get('/post/:id', (req, res) => {
-    Post.findOne({
+router.get('/pokemon/:id', (req, res) => {
+    Pokemon.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       },
-      attributes: ['id', 'post_text', 'title', 'created_at'],
       include: [
-          {
-              model: Comment,
-              attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-              // also include the User model itself so it can attach the username to the comment
-              include: {
-                  model: User,
-                  attributes: ['username']
-              }
-          },
           {
               model: User,
               attributes: ['username']
           }
       ]
     })
-    .then(dbPostData => {
-      if (!dbPostData) {
+    .then(dbPokemonData => {
+      if (!dbPokemonData) {
         res.status(404).json({ message: 'No post found with this id' });
         return;
       }
-
       // serialize the data
-      const post = dbPostData.get({ plain: true });
+      const pokemons = dbPokemonData.get({ plain: true });
+      
+      // verifies that session owner is the same owner as a particular pokemon
+      const owner = verifyOwner(req.session.user_id, pokemons.user_id);
 
-      // pass data to template
-      res.render('single-post', {
-        post,
-        loggedIn: req.session.loggedIn
+      // renders single pokemon card
+      res.render('single-pokemon', {
+        pokemons,
+        loggedIn: req.session.loggedIn,
+        owner
       });
     })
     .catch(err => {
