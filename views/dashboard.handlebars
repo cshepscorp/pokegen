@@ -7,45 +7,16 @@
   <input type="text" name="pokemon-name" id="pokemon-name" />
   <br><br>
 
-  <label for="type">Choose one your first Pokemon type (required):</label>
+  <label for="type">Choose your first Pokemon type (required):</label>
   <select type="type" id="type">
-    <option value="none" selected diasbled hidden>Select a Type</option>
-    <option value="Bug">bug</option>
-    <option value="Dragon">dragon</option>
-    <option value="Electric">electric</option>
-    <option value="Fighting">fighting</option>
-    <option value="Fire">fire</option>
-    <option value="Flying">flying</option>
-    <option value="Ghost">ghost</option>
-    <option value="Grass">grass</option>
-    <option value="Ground">ground</option>
-    <option value="Ice">ice</option>
-    <option value="Normal">normal</option>
-    <option value="Poison">poison</option>
-    <option value="Psychic">psychic</option>
-    <option value="Rock">rock</option>
-    <option value="Water">water</option>
+    {{> type-options }}
   </select>
   <br><br>
 
-  <label for="type2">Choose one your second Pokemon type:</label>
+  <label for="type2">Choose your second Pokemon type:</label>
   <select type="type2" id="type2">
-    <option value="none" selected diasbled hidden>Select a Type</option>
-    <option value="Bug">bug</option>
-    <option value="Dragon">dragon</option>
-    <option value="Electric">electric</option>
-    <option value="Fighting">fighting</option>
-    <option value="Fire">fire</option>
-    <option value="Flying">flying</option>
-    <option value="Ghost">ghost</option>
-    <option value="Grass">grass</option>
-    <option value="Ground">ground</option>
-    <option value="Ice">ice</option>
-    <option value="Normal">normal</option>
-    <option value="Poison">poison</option>
-    <option value="Psychic">psychic</option>
-    <option value="Rock">rock</option>
-    <option value="Water">water</option>
+    <option value="">None</option>
+    {{> type-options }}
   </select>
   <br><br>
 
@@ -54,15 +25,15 @@
   <input type="text" name="move1" id="move1" />
   <br><br>
 
-  <label for="move2">Enter your pokemon's move:</label>
+  <label for="move2">Enter your pokemon's second move:</label>
   <input type="text" name="move2" id="move2" />
   <br><br>
 
-  <label for="move3">Enter your pokemon's move:</label>
+  <label for="move3">Enter your pokemon's third move:</label>
   <input type="text" name="move3" id="move3" />
   <br><br>
 
-  <label for="move4">Enter your pokemon's move:</label>
+  <label for="move4">Enter your pokemon's fourth move:</label>
   <input type="text" name="move4" id="move4" />
   <br><br>
 
