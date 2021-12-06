@@ -125,7 +125,7 @@ header h1 {
 
 main {
   flex: 1;
-  padding: 2% 0;
+  padding: 0 0 2% 0;
   background-color: #fff!important;
 }
 
