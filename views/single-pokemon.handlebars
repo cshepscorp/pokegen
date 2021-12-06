@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container padded-div">
   <div class="row justify-content-center">
     <div class="card p-2 m-2 rounded shadow">
         <h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{pokemons.type}} {{#if pokemons.type2}} - {{pokemons.type2}} {{/if}}</span></em></h6>
@@ -7,9 +7,9 @@
         <div class="card-body">
           <h5 class="card-text">Moves</h5>
             <p class="card-text">{{pokemons.move1}} {{pokemons.move2}} {{pokemons.move3}} {{pokemons.move4}}</p>
-         <h5 class="card-text">Agilities</h5>
+          <h5 class="card-text">Agilities</h5>
             <p class="card-text">{{pokemons.ability1}} {{pokemons.ability2}} {{pokemons.ability3}}</p>                
-         <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{pokemons.user.username}}</span></em></h6>
+          <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{pokemons.user.username}}</span></em></h6>
         </div>
         {{#if owner}}
         <a href="/dashboard/edit/{{pokemons.id}}" class="edit-link">Edit Pokemon</a>
