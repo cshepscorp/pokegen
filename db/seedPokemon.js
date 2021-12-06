@@ -1,6 +1,7 @@
 // import the db connection and the model you're seeding up here
 const sequelize = require("../config/connection");
 const { Pokemon, User } = require("../models");
+const { sync } = require("../models/User");
 
 // create an array of rows that you want to seed the model with
 const userData = [
@@ -58,10 +59,10 @@ const pokemonData = [
   ];
   
 // create an asynchronous seeding script
-const seedUsers = () => {
+const seedUsers = async () => {
     console.log("Seeding User data now...");
     console.log("\n=================\n");
-    User.bulkCreate(userData);
+    User.bulkCreate(userData, {individualHooks: true});
     return;
 };
 
@@ -74,7 +75,7 @@ const seedPokemon = () => {
 };
   
 // call the seeding script to seed the table
-seedUsers();
+await seedUsers();
 
 // call the seeding script to seed the table
 seedPokemon();
