@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- header with nav -->
   <div class="container-fluid">
     <header>
         <h1>
@@ -28,20 +29,19 @@
           <a href="/dashboard">dashboard</a>
         </nav>
     </header>
-    
+  </div>
+  <!-- main content area -->
     <main>
-      <div class="container-fluid">
-        {{!-- <div class="row"> --}}
-          <div class="row justify-content-center">
+      {{!-- <div class="container">
+          <div class="row justify-content-center"> --}}
           {{{ body }}}
-          </div>
-        {{!-- </div> --}}
-      </div>
+          {{!-- </div>
+      </div> --}}
     </main>
     <footer>
       <p class="text-muted">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Pokegen</p>
     </footer>
-  </div>
+
   <script src="/javascript/logout.js"></script>
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
