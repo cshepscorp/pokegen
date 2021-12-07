@@ -39,7 +39,6 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
         id: req.params.id
     },
     include: [
-
         {
             model: User,
             attributes: ['username']
