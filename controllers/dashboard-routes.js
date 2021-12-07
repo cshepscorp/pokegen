@@ -36,7 +36,6 @@ router.get('/edit/:id', withAuth, (req, res) => {
         id: req.params.id
     },
     include: [
-
         {
             model: User,
             attributes: ['username']

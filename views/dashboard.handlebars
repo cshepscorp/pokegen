@@ -1,3 +1,4 @@
+
 <div class="container padded-div">
   <div class="row justify-content-center">
     {{!-- Button to create Pokemon --}}
@@ -23,35 +24,38 @@
       <br><br>
 
     {{!-- moves --}}
+
+<div class="move1" id="first-move">
       <label for="move1">Enter your pokemon's first move (required):</label>
-      <input type="text" name="move1" id="move1" />
-      <br><br>
+      <input type="text" name="move1" id="move1" onblur="showMove2()" />
+</div>
 
+<div class="hide" id="second-move">
       <label for="move2">Enter your pokemon's second move:</label>
-      <input type="text" name="move2" id="move2" />
-      <br><br>
-
+      <input type="text" name="move2" id="move2" onblur="showMove3()" />
+</div>
+<div class="hide" id="third-move">
       <label for="move3">Enter your pokemon's third move:</label>
-      <input type="text" name="move3" id="move3" />
-      <br><br>
-
+      <input type="text" name="move3" id="move3" onblur="showMove4()" />
+</div>
+<div class="hide" id="fourth-move">
       <label for="move4">Enter your pokemon's fourth move:</label>
       <input type="text" name="move4" id="move4" />
-      <br><br>
+</div>
 
     {{!-- abilities --}}
-
+<div class="ability1" id="first-ability">
       <label for="ability1" aria-required="">Enter your pokemon's first ability (required):</label>
-      <input type="text" name="ability1" id="ability1" />
-      <br><br>
-
+      <input type="text" name="ability1" id="ability1" onblur="showAbility2()"  />
+</div>
+<div class="hide" id="second-ability">
       <label for="ability2">Enter your pokemon's second ability:</label>
-      <input type="text" name="ability2" id="ability2" />
-      <br><br>
-
+      <input type="text" name="ability2" id="ability2" onblur="showAbility3()" />
+</div>
+<div class="hide" id="third-ability">
       <label for="ability3">Enter your pokemon's third ability:</label>
       <input type="text" name="ability3" id="ability3" />
-      <br><br>
+</div>
 
       <input type="submit" value="Submit">
     </form>
