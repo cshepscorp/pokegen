@@ -58,18 +58,6 @@ router.post('/', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-    // .catch (err => {
-    //   if (err.name === 'SequelizeUniqueConstraintError') {
-    //     console.log('err.name', err.name);
-    //     return res.status(400).json({
-    //       success: false,
-    //       msg: err.errors.map(e => e.message)
-    //     })
-    //   } else {
-    //     //new ErrorResponse(`Sorry, could not save `, 404);
-    //     res.status(500).json(err)
-    //   }
-    // });
 });
 
 // verify user during login
