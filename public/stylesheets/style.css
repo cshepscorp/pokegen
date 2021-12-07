@@ -39,7 +39,7 @@ button {
 }
 
 button:hover {
-  color: #73a6f9!important;
+  color: whitesmoke!important;
   background-color: #3486eb;
 }
 
@@ -51,18 +51,7 @@ button:hover {
   background-attachment: fixed;
   background-color: #ffcb05;
   background-repeat: no-repeat;
-  /* position: relative; */
   height: 470px;
-  /* display: flex; */
-  /* justify-content: flex-start; */
-  /* flex-wrap: wrap; */
-  /* padding: 200px 0 40px 0; */
-  /* padding: 250px 0; */
-}
-
-.post-list {
-  margin: 0;
-  padding: 0;
 }
 
 textarea, input {
@@ -73,7 +62,7 @@ textarea, input {
 
 textarea:focus, input:focus {
   outline: none;
-  border: 1px solid #3486eb;
+  border: 1px solid red;
 }
 
 textarea {
@@ -125,8 +114,12 @@ header h1 {
 
 main {
   flex: 1;
-  padding: 2% 0;
+  /* padding: 2%; */
   background-color: #fff!important;
+}
+
+.padded-div {
+  padding: 2%;
 }
 
 .card {
@@ -146,6 +139,10 @@ main {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.login-card:hover {
+  transform: none;
 }
 
 .card-img {
@@ -182,57 +179,9 @@ main {
   line-height: 150%;
 }
 
-.post .title span {
-  font-style: italic;
-  font-size: 90%;
-  color: #7d7d7d;
-}
-
 .edit-link {
   display: block;
   margin: -1.5% 0 2% 0;
-}
-
-.upvote-btn {
-  background-color: #197d0f;
-  transition: background-color .1s;
-}
-
-.upvote-btn:hover {
-  background-color: #1f9c13;
-}
-
-.comment-form {
-  margin-bottom: 5%;
-}
-
-.comment {
-  padding: 1%;
-  margin-bottom: 1%;
-  background-color: #BEBEBE;
-}
-
-.comment-text {
-  color: #808080;
-}
-.comment:nth-child(odd) {
-  background-color: #ececec;
-}
-
-.comment .meta {
-  font-size: 80%;
-  font-weight: bold;
-  color:#484848;
-  margin-bottom: .5%;
-  opacity: .6;
-}
-
-.new-post-form input {
-  width: 300px;
-}
-
-.edit-post-form {
-  margin-bottom: 5%;
 }
 
 footer {
@@ -240,9 +189,45 @@ footer {
   display: flex;
   justify-content: center;
   padding: 1%;
-  font-size: 110%;
+  font-size: 90%;
 }
 
 .hide {
   display: none;
 }
+
+@media screen and (max-width:575px) {
+  .hero {
+    background-size: 400px;
+    background-attachment: scroll;
+    background-position: center;
+    height: 240px;
+  }
+  input {width: 95%;}
+  header {
+      padding: 20px 15px 10px 15px;
+      flex-direction: column;
+  }
+  header h1 {
+      font-size: 2.25em;
+      text-align: center;
+  }
+  .card {
+      flex: 100%;
+      margin-right: 20px;
+  }
+  .btn-link { 
+    font-size: 1.2em;
+    font-weight: 500!important;
+    text-decoration: none!important;
+  }
+  nav { 
+    width: 100%!important;
+    text-align: center;
+    }
+  nav a {
+    font-size: 1.2em;      
+    font-weight: bold;
+  }
+}
+

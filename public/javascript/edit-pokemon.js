@@ -19,7 +19,6 @@ async function editFormHandler(event) {
   const ability3 = document.querySelector('input[name="ability3"]').value;
 
   console.log('data attributes' + document.querySelector('input[name="ability3"]').value);
-  //const post_text = document.getElementById('post-text').value;
   const response = await fetch(`/api/pokemon/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
@@ -32,11 +31,10 @@ async function editFormHandler(event) {
       'Content-Type': 'application/json'
     }
   });
+  
   // check the response status
-
   if (response.ok) {
     document.location.replace('/dashboard');
-    //console.log(title, post_text); // these values are both showing up correctly in console!
   } else {
     alert(response.statusText);
   }
