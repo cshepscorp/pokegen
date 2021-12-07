@@ -69,4 +69,33 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
 
 });
 
+// router.get('/edit/users/:id', withAuth, (req, res) => { // add withAuth here as our own middlware
+//   User.findOne({
+//     where: {
+//         id: req.params.id
+//     },
+//   })
+//     .then(dbUserData => {
+//         if(!dbUserData) {
+//             // The 404 status code identifies a user error and will need a different request for a successful response.
+//             res.status(404).json({ message: 'No user with this id was found'});
+//             return;
+//         }
+
+//         // serialize the data with plain: true
+//         const newUser = dbUserData.get({ plain: true });
+
+//         console.log('Route works');
+//         // pass data to template
+//         res.render('edit-users', { 
+//           newUser,
+//           loggedIn: req.session.loggedIn
+//         });
+//     })  
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
+
 module.exports = router;

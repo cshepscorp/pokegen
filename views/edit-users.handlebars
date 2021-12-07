@@ -1,0 +1,24 @@
+<div class="container padded-div">
+  <div class="row justify-content-center">
+    <div class="card login-card p-2 m-2 rounded">
+      <div class="card-body">
+        <h2 class="">Edit Account Info</h2> 
+        <form class="edit-form">
+          <div class="form-group">
+            <label for="username-edit">New Username</label>
+            <input type="username" value="{{users.username}}" id="username-edit" />
+          </div>
+          <div class="form-group">
+            <label for="password-edit">New Password</label>
+            <input type="password" id="password-edit" />
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Submit Change</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/javascript/edit-user.js"></script>
