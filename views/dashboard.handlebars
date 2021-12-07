@@ -1,3 +1,4 @@
+
 <div class="container padded-div">
   <div class="row justify-content-center">
     {{!-- Button to create Pokemon --}}
@@ -23,14 +24,16 @@
       <br><br>
 
     {{!-- moves --}}
+    <div class="move1">
       <label for="move1">Enter your pokemon's first move (required):</label>
       <input type="text" name="move1" id="move1" />
-      <br><br>
+      <br><br></div>
 
+<div class="move2 hide">
       <label for="move2">Enter your pokemon's second move:</label>
       <input type="text" name="move2" id="move2" />
       <br><br>
-
+</div>
       <label for="move3">Enter your pokemon's third move:</label>
       <input type="text" name="move3" id="move3" />
       <br><br>
@@ -71,6 +74,12 @@
     {{/if}}
   </div>
 </div>
+<script>
+  $(".move1").onfocus(function() {
 
+    $(".move2").removeClass("hide");
+
+})
+</script>
  <script src="/javascript/submit-pokemon.js"></script>
 
