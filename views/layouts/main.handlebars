@@ -21,8 +21,8 @@
         </h1>
         <nav>
           {{#if loggedIn}}
-          <button id="logout" class="btn-link">logout</button> |
-          <a href="/user/{{user.id}}">Update Account</a> | 
+          <button id="logout" class="btn-link">logout</button> | 
+          <a href="/users/{{user}}">update account</a> |
           {{else}}
           <a href="/login">login</a> | 
           {{/if}}
@@ -42,6 +42,7 @@
   <script src="/javascript/logout.js"></script>
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
+  <script src="/javascript/edit-user.js"></script>
   {{/if}}
 </body>
 

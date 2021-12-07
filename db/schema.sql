@@ -25,7 +25,6 @@ CREATE TABLE pokemon (
     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-
 -- CREATE TABLE moves (
 --     id INTEGER AUTO_INCREMENT PRIMARY KEY,
 --     name VARCHAR(25) NOT NULL,
