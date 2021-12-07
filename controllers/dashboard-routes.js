@@ -24,7 +24,7 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
           // user won't be able to get to the dashboard page unless they're logged in
           console.table(pokemons);
-          res.render('dashboard', { pokemons, loggedIn: true });
+          res.render('dashboard', { pokemons, loggedIn: true, user: req.session.user_id });
         })
         .catch(err => {
           console.log(err);
@@ -59,7 +59,8 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
         // pass data to template
         res.render('edit-pokemon', { 
           pokemon,
-          loggedIn: req.session.loggedIn
+          loggedIn: req.session.loggedIn,
+          user: req.session.user_id
           // user will only see comments if logged in
         });
     })  

@@ -20,7 +20,8 @@ User.init(
     },
     username: {
       type: DataTypes.STRING(20),
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING(100),
