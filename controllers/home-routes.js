@@ -8,46 +8,56 @@ router.get('/', (req, res) => {
   Pokemon.findAll({
 
     include: [ // Instead of using complex JOIN statements with SQL, we can call on Sequelize's include option to perform the join for us.
-        {
-            model: User,
-            attributes: ['username']
-        }
-        ]})
-        .then(dbPokemonData => {
-          const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
-          // pass post objects into the homepage template
-          // console.table(pokemons);
-          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-        })
-  });
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
+    .then(dbPokemonData => {
+      const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
+      // pass post objects into the homepage template
+      // console.table(pokemons);
+      res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
+});
 
-
-
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
+router.get('/user/:id', (req, res) => {
+  User.findOne({ 
+    where: {
+      id: res.params.id
+    },
+  })
+  .then(dbUserData => {
+    if(!dbUserData) {
+      res.status(404).json({ message: 'No user found with this id'});
       return;
     }
+    const users = dbUserData.get({ plain: true});
 
-    res.render('login');
+    res.render('edit-users', {
+      users
+    });
   });
+});
+
 
 router.get('/pokemon/:id', (req, res) => {
-    Pokemon.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: [
-          {
-              model: User,
-              attributes: ['username']
-          }
-      ]
-    })
+  Pokemon.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+        attributes: ['username']
+      }
+    ]
+  })
     .then(dbPokemonData => {
       if (!dbPokemonData) {
         res.status(404).json({ message: 'No post found with this id' });
@@ -55,7 +65,7 @@ router.get('/pokemon/:id', (req, res) => {
       }
       // serialize the data
       const pokemons = dbPokemonData.get({ plain: true });
-      
+
       // verifies that session owner is the same owner as a particular pokemon
       const owner = verifyOwner(req.session.user_id, pokemons.user_id);
 
@@ -70,6 +80,6 @@ router.get('/pokemon/:id', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-  });
+});
 
 module.exports = router;
