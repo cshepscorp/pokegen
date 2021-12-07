@@ -4,7 +4,7 @@ const { User, Pokemon } = require('../../models');
 // GET /api/users
 router.get('/', (req, res) => {
     User.findAll({
-        // attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password'] }
     })
     .then(dbUserData => res.json(dbUserData))
     .catch(err => {
@@ -60,7 +60,6 @@ router.post('/', (req, res) => {
 });
 
 // verify user during login
-// POST method carries the request parameter in req.body, which makes it a more secure way of transferring data from the client to the server
 router.post('/login', (req, res) => {
 
     User.findOne({
