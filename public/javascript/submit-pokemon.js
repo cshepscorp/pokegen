@@ -13,7 +13,6 @@ function addClass() {
 
 // typeTwo.appendChild(newOpt)
 
-
 async function newFormHandler(event) {
     event.preventDefault();
     
