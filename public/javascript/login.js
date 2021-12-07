@@ -4,14 +4,10 @@ async function signupFormHandler(event) {
     const password = document.querySelector('#password-signup').value.trim();
 
     if (password.length < 4) {
-        alert('please enter both a username and password (with at least 4 characters');
+        alert('Please enter a password with at least 4 characters');
         return;
     }
 
-    // if (response.err.name === 'SequelizeUniqueConstraintError') {
-    //     alert('Sorry. this username is already taken');
-    //     return;
-    // }
     if (username && password) {
         const response = await fetch('/api/users', {
             method: 'post',
@@ -27,7 +23,18 @@ async function signupFormHandler(event) {
             console.log('success');
             document.location.replace('/');
         } else {
-            alert(response.statusText);
+            fetch('/api/users')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].username === username) {
+                        alert('An account with this username already exists. Please enter a different username!');
+                    }
+                }
+            })
         }
     }
 }
@@ -51,7 +58,24 @@ async function loginFormHandler(event) {
         if (response.ok) {
             document.location.replace('/');
         } else {
-            alert(response.statusText);
+            fetch('api/users')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                let found = false;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].username === username) {
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    alert('The entered username does not exist! Please enter a valid username or sign up as a new user!')
+                } else if (found) {
+                    alert('Invalid password. Please enter the correct password for this username!')
+                }
+            })
         }
     }
 }
