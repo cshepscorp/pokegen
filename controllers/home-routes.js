@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
           const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           // pass post objects into the homepage template
           // console.table(pokemons);
-          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn });
+          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn, user: req.session.user_id });
         })
         .catch(err => {
           console.log(err);
@@ -28,13 +28,34 @@ router.get('/', (req, res) => {
 
 
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  
+  res.render('login');
+});
 
-    res.render('login');
+router.get('/users/:id', (req, res) => {
+    User.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      console.log(dbUserData);
+      // serialize the data
+      const users = dbUserData.get({ plain: true });
+
+    res.render('edit-users', {
+      users
+    });
   });
+});
 
 router.get('/pokemon/:id', (req, res) => {
     Pokemon.findOne({
