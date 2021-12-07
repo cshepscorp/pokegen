@@ -46,28 +46,28 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
         }
     ]
   })
-    .then(dbPostData => {
-        if(!dbPostData) {
+    .then(dbPokemonData => {
+        if(!dbPokemonData) {
             // res.status(404).json({ message: 'No post with this id was found'});
             console.log("No Pokemon with that ID were found.")
             res.redirect("/");
             return;
         }
 
-        if (dbPostData.user_id != req.session.user_id) {
+        if (dbPokemonData.user_id != req.session.user_id) {
           res.redirect("/");
           return;
         }
 
-        // serialize the data with plain: true
-        const pokemon = dbPostData.get({ plain: true });
+        // plain: true turns the .get() results, which are a sequelize object,
+        // into a regular array of objects, which can be read more easily 
+        const pokemon = dbPokemonData.get({ plain: true });
 
         // pass data to template
         res.render('edit-pokemon', { 
           pokemon,
           loggedIn: req.session.loggedIn,
           user: req.session.user_id
-          // user will only see comments if logged in
         });
     })  
     .catch(err => {
