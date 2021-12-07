@@ -47,9 +47,15 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
   })
     .then(dbPostData => {
         if(!dbPostData) {
-            // The 404 status code identifies a user error and will need a different request for a successful response.
-            res.status(404).json({ message: 'No post with this id was found'});
+            // res.status(404).json({ message: 'No post with this id was found'});
+            console.log("No Pokemon with that ID were found.")
+            res.redirect("/");
             return;
+        }
+
+        if (dbPostData.user_id != req.session.user_id) {
+          res.redirect("/");
+          return;
         }
 
         // serialize the data with plain: true

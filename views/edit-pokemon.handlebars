@@ -11,7 +11,6 @@
         <br><br>
         <label for="types">Choose one your first Pokemon type:</label>
         <select type="types" id="type1">
-          {{!-- <option value="" selected diasbled hidden>Select a Type</option> --}}
           {{> type-options }}
         </select>
         <br><br>
@@ -52,20 +51,34 @@
         <input type="text" name="ability3" id="ability3" value="{{pokemon.ability3}}"/>
         <br><br>
 
-        {{!-- <div>
-          <input name="post-text" type="text" value="{{post.post_text}}" />
-        </div> --}}
-        <div>
-          {{!-- Posted by {{post.user.username}} on {{format_date post.created_at}}
-          |
-          <a href="./../{{post.id}}">{{post.comments.length}} Comment(s)</a> --}}
-        </div>
-        <button type="submit" class="btn btn-primary">Save pokemon</button>
-        <button type="button" class="delete-btn btn btn-danger">Delete pokemon</button>
-      </form>
-    </article>
-  </div>
-</div>
+    <label for="ability1">Enter your pokemon's first ability:</label>
+    <input type="text" name="ability1" id="ability1" value="{{pokemon.ability1}}"/>
+    <br><br>
+
+    <label for="ability2">Enter your pokemon's second ability:</label>
+    <input type="text" name="ability2" id="ability2" value="{{pokemon.ability2}}"/>
+    <br><br>
+
+    <label for="ability3">Enter your pokemon's third ability:</label>
+    <input type="text" name="ability3" id="ability3" value="{{pokemon.ability3}}"/>
+    <br><br>
+
+    {{!-- <div>
+      <input name="post-text" type="text" value="{{post.post_text}}" />
+    </div> --}}
+    <div>
+      {{!-- Posted by {{post.user.username}} on {{format_date post.created_at}}
+      |
+      <a href="./../{{post.id}}">{{post.comments.length}} Comment(s)</a> --}}
+    </div>
+    <button type="submit">Save pokemon</button>
+    <button type="button" class="delete-btn">Delete pokemon</button>
+  </form>
+</article>
+
+
+{{!-- using the comments partial to list current comments --}}
+{{!-- {{> comments post.comments}} --}}
 
 <script src="/javascript/edit-pokemon.js"></script>
 <script src="/javascript/delete-pokemon.js"></script>

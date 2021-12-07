@@ -6,8 +6,7 @@ const verifyOwner = require('../utils/verifyOwner');
 router.get('/', (req, res) => {
   //console.log(req.session);
   Pokemon.findAll({
-
-    include: [ // Instead of using complex JOIN statements with SQL, we can call on Sequelize's include option to perform the join for us.
+    include: [ 
         {
             model: User,
             attributes: ['username']
@@ -45,6 +44,10 @@ router.get('/users/:id', (req, res) => {
     .then(dbUserData => {
       if (!dbUserData) {
         res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      if (dbUserData.id != req.session.user_id) {
+        res.redirect("/");
         return;
       }
       // serialize the data
