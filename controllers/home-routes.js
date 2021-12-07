@@ -47,12 +47,13 @@ router.get('/users/:id', (req, res) => {
         res.status(404).json({ message: 'No user found with this id' });
         return;
       }
-      console.log(dbUserData);
       // serialize the data
       const users = dbUserData.get({ plain: true });
 
     res.render('edit-users', {
-      users
+      users,
+      user: req.session.user_id,
+      loggedIn: req.session.loggedIn
     });
   });
 });
@@ -84,7 +85,8 @@ router.get('/pokemon/:id', (req, res) => {
       res.render('single-pokemon', {
         pokemons,
         loggedIn: req.session.loggedIn,
-        owner
+        owner,
+        user: req.session.user_id
       });
     })
     .catch(err => {
