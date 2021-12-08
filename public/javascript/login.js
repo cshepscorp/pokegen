@@ -8,6 +8,11 @@ async function signupFormHandler(event) {
         return;
     }
 
+    if (!username) {
+        alert('Please enter a username');
+        return;
+    }
+
     if (username && password) {
         const response = await fetch('/api/users', {
             method: 'post',
@@ -17,24 +22,12 @@ async function signupFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
-
         // check the response status
         if (response.ok) {
             console.log('success');
             document.location.replace('/');
         } else {
-            fetch('/api/users')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].username === username) {
-                        alert('An account with this username already exists. Please enter a different username!');
-                    }
-                }
-            })
+            alert('Username already exists. Please enter a different username');
         }
     }
 }
