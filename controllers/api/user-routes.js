@@ -47,7 +47,6 @@ router.post('/', (req, res) => {
   })
   .then(userdata => {
     if (userdata) {
-      console.log('========================' + userdata + '============================');
       res.status(400).json({ message: 'Username already exists' });
       return;
       // res.json({ message: 'Username already exists' });
@@ -83,13 +82,13 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.status(400).json({ message: 'No user with that username exists!' });
+          res.status(400).json({ message1: 'No user with that username exists!' });
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
+            res.status(400).json({ message2: 'Incorrect password!' });
             return;
           }
 

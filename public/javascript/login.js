@@ -22,12 +22,14 @@ async function signupFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
+        const duplicateUsername = await response.json();
+    
         // check the response status
         if (response.ok) {
             console.log('success');
             document.location.replace('/');
         } else {
-            alert('Username already exists. Please enter a different username');
+            alert(duplicateUsername.message);
         }
     }
 }
@@ -46,29 +48,15 @@ async function loginFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
+        const loginResponse = await response.json();
 
         // check the response status
         if (response.ok) {
             document.location.replace('/');
-        } else {
-            fetch('api/users')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                let found = false;
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].username === username) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    alert('The entered username does not exist! Please enter a valid username or sign up as a new user!')
-                } else if (found) {
-                    alert('Invalid password. Please enter the correct password for this username!')
-                }
-            })
+        } else if (loginResponse.message1) {
+            alert(loginResponse.message1);
+        } else if (loginResponse.message2) {
+            alert(loginResponse.message2);
         }
     }
 }
