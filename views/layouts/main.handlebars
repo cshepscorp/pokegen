@@ -10,6 +10,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
     </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
 </head>
 
 <body>
@@ -37,9 +38,11 @@
     </main>
     <footer>
       <p class="text-muted">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Pokegen</p>
+      <p class="text-muted" id="datetime">
+        <script>document.write(dayjs().format('DD-MM-YYYY'))</script>
+      </p>
     </footer>
 
-  <script src="/javascript/logout.js"></script>
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
   <script src="/javascript/edit-user.js"></script>

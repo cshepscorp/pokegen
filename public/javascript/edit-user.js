@@ -7,6 +7,10 @@ async function editUserHandler(event) {
     window.location.toString().split('/').length - 1
   ];
 
+  if (password.length < 4) {
+    alert('Please enter a password with at least 4 characters');
+  }
+
   if (username && password) {
       const response = await fetch(`/api/users/${id}`, {
           method: 'put',
@@ -21,7 +25,7 @@ async function editUserHandler(event) {
       if (response.ok) {
           document.location.replace('/');
       } else {
-          alert(response.statusText);
+          alert('Username already exists. Please enter a different username');
       }
   }
 }
