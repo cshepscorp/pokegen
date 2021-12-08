@@ -37,10 +37,12 @@
           {{{ body }}}
     </main>
     <footer>
-      <p class="text-muted">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Pokegen</p>
-      <p class="text-muted" id="datetime">
+      <div id="datetime">Hello! Today's date is -
         <script>document.write(dayjs().format('DD-MM-YYYY'))</script>
-      </p>
+         - a great day to create your own Pokemon!
+      </div>
+      <div class="text-muted">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Pokegen</div>
+      
     </footer>
 
   {{#if loggedIn}}

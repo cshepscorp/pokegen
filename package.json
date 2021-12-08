@@ -28,12 +28,8 @@
   "bugs": {
     "url": "https://github.com/cshepscorp/pokegen/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/cshepscorp/pokegen#readme"
-=======
   "homepage": "https://github.com/cshepscorp/pokegen#readme",
   "engines": {
     "node": "14.18.1"
   }
->>>>>>> a2714c7293d6c5bdfffd62fb853182e37c4b8934
 }
