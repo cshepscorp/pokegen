@@ -38,7 +38,6 @@ async function editFormHandler(event) {
   } else {
     alert(response.statusText);
   }
-  console.log('this is the end of the function');
 }
 
 document.querySelector('.edit-pokemon-form').addEventListener('submit', editFormHandler);

@@ -2,11 +2,10 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Pokemon, User } = require('../models');
 
-// checks if user logged in; have session; authorized
 const withAuth = require('../utils/auth');
 
 // all dashboard views will be prefixed with /dashboard
-router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlware
+router.get('/', withAuth, (req, res) => {
     Pokemon.findAll({
         where: {
           // use the ID from the session so we retrieve posts made by logged in user
@@ -19,11 +18,9 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
         ]
       })
         .then(dbPokemonData => {
-          // serialize data before passing to template
-          // using post here but this can be named ANYTHING 
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
-          // user won't be able to get to the dashboard page unless they're logged in
           console.table(pokemons);
+          // user won't be able to get to the dashboard page unless they're logged in
           res.render('dashboard', { pokemons, loggedIn: true, user: req.session.user_id });
         })
         .catch(err => {
@@ -33,7 +30,7 @@ router.get('/', withAuth, (req, res) => { // add withAuth here as our own middlw
 
   });
 
-router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our own middlware
+router.get('/edit/:id', withAuth, (req, res) => {
   Pokemon.findOne({
     where: {
         id: req.params.id
@@ -45,28 +42,28 @@ router.get('/edit/:id', withAuth, (req, res) => { // add withAuth here as our ow
         }
     ]
   })
-    .then(dbPostData => {
-        if(!dbPostData) {
+    .then(dbPokemonData => {
+        if(!dbPokemonData) {
             // res.status(404).json({ message: 'No post with this id was found'});
             console.log("No Pokemon with that ID were found.")
             res.redirect("/");
             return;
         }
 
-        if (dbPostData.user_id != req.session.user_id) {
+        if (dbPokemonData.user_id != req.session.user_id) {
           res.redirect("/");
           return;
         }
 
-        // serialize the data with plain: true
-        const pokemon = dbPostData.get({ plain: true });
+        // plain: true turns the .get() results, which are a sequelize object,
+        // into a regular array of objects, which can be read more easily 
+        const pokemon = dbPokemonData.get({ plain: true });
 
         // pass data to template
         res.render('edit-pokemon', { 
           pokemon,
-          loggedIn: req.session.loggedIn,
-          user: req.session.user_id
-          // user will only see comments if logged in
+          // loggedIn: req.session.loggedIn,
+          // user: req.session.user_id
         });
     })  
     .catch(err => {

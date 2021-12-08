@@ -73,7 +73,6 @@ router.post('/', (req, res) => {
 });
 
 // verify user during login
-// POST method carries the request parameter in req.body, which makes it a more secure way of transferring data from the client to the server
 router.post('/login', (req, res) => {
 
     User.findOne({
@@ -82,13 +81,16 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.status(400).json({ message1: 'No user with that username exists!' });
+          // res.status(400).json({ message: 'No user with that username exists!' });
+          res.statusMessage = "No user with that username exists!";
+          res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.status(400).json({ message2: 'Incorrect password!' });
+            res.statusMessage = "Incorrect password."
+            res.status(400).json();
             return;
           }
 
@@ -103,6 +105,7 @@ router.post('/login', (req, res) => {
            });  
         });
   });
+  
 // logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {

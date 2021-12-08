@@ -8,7 +8,6 @@ which could potentially be another middleware function or the final function tha
 
 const Pokemon = require("../models/Pokemon");
 
-// add withAuth to all non-GET routes to stop unauthorized users from accessing any PUT POST OR DELETE routes
 const withAuth = (req, res, next) => {
   if (!req.session.user_id) {
     res.redirect("/login"); // redirect if not auth; logged in; no session
