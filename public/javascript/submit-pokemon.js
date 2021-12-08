@@ -53,8 +53,13 @@ async function newFormHandler(event) {
       return;
     }
 
-    if (!move1 || !ability1) {
-      alert('You must select at least one type and one ability');
+    if (!move1) {
+      alert('You must select at least one move');
+      return;
+    }
+
+    if (!ability1) {
+      alert('You must select at least one ability');
       return;
     }
 
@@ -76,28 +81,6 @@ async function newFormHandler(event) {
     } else {
       alert(response.statusText);
     }
-  }
-
-  // show input fields when inputs are filled in
-  function showMove2() {
-    var mv2 = document.getElementById("second-move");
-    mv2.classList.remove('hide');
-  }
-  function showMove3() {
-    var mv3 = document.getElementById("third-move");
-    mv3.classList.remove('hide');
-  }
-  function showMove4() {
-    var mv4 = document.getElementById("fourth-move");
-    mv4.classList.remove('hide');
-  }
-  function showAbility2() {
-    var ab2 = document.getElementById("second-ability");
-    ab2.classList.remove('hide');
-  }
-  function showAbility3() {
-    var ab3 = document.getElementById("third-ability");
-    ab3.classList.remove('hide');
   }
   
   document.querySelector('.new-pokemon-form').addEventListener('submit', newFormHandler);
