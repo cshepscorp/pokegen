@@ -2,7 +2,7 @@ const router = require('express').Router();
 const session = require('express-session');
 const { User, Pokemon } = require('../../models');
 
-// GET /api/users
+// gets every user
 router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/users/1
+// gets a single user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST create a new user
+// creates a new user
 router.post('/', (req, res) => {
   User.findOne({
     where: {
@@ -48,9 +48,9 @@ router.post('/', (req, res) => {
   })
   .then(userdata => {
     if (userdata) {
-      res.status(400).json({ message: 'Username already exists' });
+      res.statusMessage = "Username already exists!";
+      res.status(400).json();
       return;
-      // res.json({ message: 'Username already exists' });
     } else {
       User.create({
         username: req.body.username,
@@ -82,16 +82,15 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.status(400).json({ message1: 'No user with that username exists!' });
-          //res.statusMessage = "No user with that username exists!";
-          //res.status(400).json();
+          res.statusMessage = "No user with that username exists!";
+          res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            //res.statusMessage = "Incorrect password."
-            res.status(400).json({ message2: 'Incorrect password!' });
+            res.statusMessage = "Incorrect password!"
+            res.status(400).json();
             return;
           }
 
