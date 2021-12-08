@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const session = require('express-session');
 const { User, Pokemon } = require('../../models');
 
 // GET /api/users
@@ -126,7 +127,7 @@ router.put('/:id', (req, res) => {
     }
   })
   .then(dbUserData => {
-    if (dbUserData) {
+    if (dbUserData && dbUserData.username != req.session.username) {
       res.status(400).json({ message: 'Username already exists' });
       return;
     }
