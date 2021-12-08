@@ -12,6 +12,8 @@
 
       <label for="type">Choose your first Pokemon type (required):</label>
       <select type="type" id="type">
+        <option selected disabled hidden>Select a type here!</option>
+        {{!-- <option value="">None</option> --}}
         {{> type-options }}
       </select>
       <br><br>
