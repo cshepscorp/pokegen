@@ -81,16 +81,16 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          // res.status(400).json({ message: 'No user with that username exists!' });
-          res.statusMessage = "No user with that username exists!";
-          res.status(400).json();
+          res.status(400).json({ message1: 'No user with that username exists!' });
+          //res.statusMessage = "No user with that username exists!";
+          //res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.statusMessage = "Incorrect password."
-            res.status(400).json();
+            //res.statusMessage = "Incorrect password."
+            res.status(400).json({ message2: 'Incorrect password!' });
             return;
           }
 

@@ -56,7 +56,7 @@ async function loginFormHandler(event) {
         });
         const loginResponse = await response.json();
         
-        // check the response status
+        //check the response status
         if (response.ok) {
             document.location.replace('/');
         } else if (loginResponse.message1) {
