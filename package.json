@@ -1,6 +1,9 @@
 {
   "name": "pokegen",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "description": "",
   "main": "server.js",
   "dependencies": {
@@ -28,8 +31,5 @@
   "bugs": {
     "url": "https://github.com/cshepscorp/pokegen/issues"
   },
-  "homepage": "https://github.com/cshepscorp/pokegen#readme",
-  "engines": {
-    "node": "14.18.1"
-  }
+  "homepage": "https://github.com/cshepscorp/pokegen#readme"
 }
