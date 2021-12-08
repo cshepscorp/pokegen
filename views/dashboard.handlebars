@@ -1,4 +1,3 @@
-
 <div class="container padded-div">
   <div class="row justify-content-center">
     {{!-- Button to create Pokemon --}}
@@ -6,17 +5,18 @@
     <section id="create-pokemon" class="hide">
       <h2>Create New Pokemon</h2>
       <form class="new-pokemon-form">
-      <label for="pokemon-name">Enter your pokemon's name (required):</label>
-      <input type="text" name="pokemon-name" id="pokemon-name" />
-      <br><br>
-
-      <label for="type">Choose your first Pokemon type (required):</label>
-      <select type="type" id="type">
-        <option selected disabled hidden>Select a type here!</option>
-        {{!-- <option value="">None</option> --}}
-        {{> type-options }}
-      </select>
-      <br><br>
+      <div>
+        <label for="pokemon-name" class="pokemon-name">Enter your pokemon's name (required):</label>
+        <input type="text" name="pokemon-name" id="pokemon-name" />
+      </div>
+      <div class="pokemon-type">
+        <label for="type">Choose your first Pokemon type (required):</label>
+        <select type="type" id="type">
+          <option selected disabled hidden>Select a type here!</option>
+          {{!-- <option value="">None</option> --}}
+          {{> type-options }}
+        </select>
+      </div>
 
       <label for="type2">Choose your second Pokemon type:</label>
       <select type="type2" id="type2">

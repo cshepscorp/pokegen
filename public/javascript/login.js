@@ -2,6 +2,8 @@ async function signupFormHandler(event) {
     event.preventDefault();
     const username = document.querySelector('#username-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+    const alertEl = document.querySelector(".signup-card");
+    const alertElDiv = document.createElement('div');
 
     if (password.length < 4) {
         alert('Please enter a password with at least 4 characters');
@@ -29,7 +31,9 @@ async function signupFormHandler(event) {
             console.log('success');
             document.location.replace('/');
         } else {
-            alert(duplicateUsername.message);
+            alertElDiv.innerHTML = `<span class="alertEl rounded">` + duplicateUsername.message + `</span>`;
+            alertEl.append(alertElDiv);
+            //alert(duplicateUsername.message);
         }
     }
 }
@@ -38,6 +42,8 @@ async function loginFormHandler(event) {
     event.preventDefault();
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
+    const alertEl = document.querySelector(".login-card");
+    const alertElDiv = document.createElement('div');
 
     if (username && password) {
         const response = await fetch(`/api/users/login`, {
@@ -49,14 +55,18 @@ async function loginFormHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         const loginResponse = await response.json();
-
+        
         // check the response status
         if (response.ok) {
             document.location.replace('/');
         } else if (loginResponse.message1) {
-            alert(loginResponse.message1);
+            alertElDiv.innerHTML = `<span class="alertEl rounded">` + loginResponse.message1 + `</span>`;
+            alertEl.append(alertElDiv);
+            //alert(loginResponse.message1);
         } else if (loginResponse.message2) {
-            alert(loginResponse.message2);
+            alertElDiv.innerHTML = `<span class="alertEl rounded">` + loginResponse.message2 + `</span>`;
+            alertEl.append(alertElDiv);
+            //alert(loginResponse.message2);
         }
     }
 }
