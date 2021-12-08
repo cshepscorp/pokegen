@@ -119,7 +119,10 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// PUT /api/users/1
+/**
+ * Updates a user, allowing changes to name or password, as long
+ * as they don't pick a username already in use (that isn't their own)
+ */
 router.put('/:id', (req, res) => {
   User.findOne({
     where: {
