@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+.alertEl {
+  color: red;
+  background-color: #fff;
+  border: 1px solid red;
+  padding: 2%;
+  font-size:13px;
+}
+
+.alert-msg {
+  color: red;
+}
 body, html {
   height: 100%;
   padding: 0;

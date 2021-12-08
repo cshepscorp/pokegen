@@ -6,34 +6,11 @@ function addClass() {
   createButton.remove();
 };
 
-function showMove2() {
-  var mv2 = document.getElementById("second-move");
-  mv2.classList.remove('hide');
-}
-function showMove3() {
-  var mv3 = document.getElementById("third-move");
-  mv3.classList.remove('hide');
-}
-function showMove4() {
-  var mv4 = document.getElementById("fourth-move");
-  mv4.classList.remove('hide');
-}
-function showAbility2() {
-  var ab2 = document.getElementById("second-ability");
-  ab2.classList.remove('hide');
-}
-function showAbility3() {
-  var ab3 = document.getElementById("third-ability");
-  ab3.classList.remove('hide');
-}
-
-// const typeTwo = document.getElementById("type2")
-// let newOpt = document.createElement("option")
-// newOpt.setAttribute("value", "test")
-// newOpt.textContent = "test"
-
-// typeTwo.appendChild(newOpt)
-
+const nameAlertEl = document.querySelector(".pokemon-name");
+const typeAlertEl = document.querySelector(".pokemon-type");
+const moveAlertEl = document.querySelector(".move1");
+const abilityAlertEl = document.querySelector(".ability1");
+    
 async function newFormHandler(event) {
     event.preventDefault();
     
@@ -47,19 +24,32 @@ async function newFormHandler(event) {
     const ability1 = document.querySelector('input[name="ability1"]').value;
     const ability2 = document.querySelector('input[name="ability2"]').value;
     const ability3 = document.querySelector('input[name="ability3"]').value;
-  
+
+    if (!name) {
+      const nameAlertElDiv = document.createElement('span');
+      nameAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must create a name</span>`;
+      nameAlertEl.append(nameAlertElDiv);
+      return;
+    }
+
     if (type === 'Select a type here!') {
-      alert('You must select at least one type');
+      const typeAlertElDiv = document.createElement('span');
+      typeAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one type</span>`;
+      typeAlertEl.append(typeAlertElDiv);
       return;
     }
 
     if (!move1) {
-      alert('You must select at least one move');
+      const moveAlertElDiv = document.createElement('span');
+      moveAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one move</span>`;
+      moveAlertEl.append(moveAlertElDiv);
       return;
     }
 
     if (!ability1) {
-      alert('You must select at least one ability');
+      const abilityAlertElDiv = document.createElement('span');
+      abilityAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one ability</span>`;
+      abilityAlertEl.append(abilityAlertElDiv);
       return;
     }
 
