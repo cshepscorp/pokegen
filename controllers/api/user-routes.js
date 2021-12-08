@@ -68,13 +68,16 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.status(400).json({ message: 'No user with that username exists!' });
+          // res.status(400).json({ message: 'No user with that username exists!' });
+          res.statusMessage = "No user with that username exists!";
+          res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
+            res.statusMessage = "Incorrect password."
+            res.status(400).json();
             return;
           }
 
@@ -89,6 +92,7 @@ router.post('/login', (req, res) => {
            });  
         });
   });
+  
 // logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
