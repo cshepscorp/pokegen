@@ -44,8 +44,9 @@ async function loginFormHandler(event) {
     event.preventDefault();
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
-    const alertEl = document.querySelector(".login-card");
-    const alertElDiv = document.createElement('div');
+    //I put the alert element in the handlebars file, set it to hidden,
+    //and then it will show itself when an error happens
+    const alertElDiv = document.querySelector('#login-error-alert');
 
     if (username && password) {
         const response = await fetch(`/api/users/login`, {
@@ -58,16 +59,15 @@ async function loginFormHandler(event) {
         });
         const loginResponse = await response.json();
         
-        //check the response status
         if (response.ok) {
             document.location.replace('/');
         } else if (loginResponse.message1) {
             alertElDiv.innerHTML = `<span class="alertEl rounded">` + loginResponse.message1 + `</span>`;
-            alertEl.append(alertElDiv);
+            alertElDiv.classList.remove('hide');
             //alert(loginResponse.message1);
         } else if (loginResponse.message2) {
             alertElDiv.innerHTML = `<span class="alertEl rounded">` + loginResponse.message2 + `</span>`;
-            alertEl.append(alertElDiv);
+            alertElDiv.classList.remove('hide');
             //alert(loginResponse.message2);
         }
     }
