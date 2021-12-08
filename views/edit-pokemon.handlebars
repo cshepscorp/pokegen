@@ -53,6 +53,14 @@
         <input type="text" name="ability3" id="ability3" value="{{pokemon.ability3}}"/>
         <br><br>
 
+    {{!-- <div>
+      <input name="post-text" type="text" value="{{post.post_text}}" />
+    </div> --}}
+    <div>
+      {{!-- Posted by {{post.user.username}} on {{format_date post.created_at}}
+      |
+      <a href="./../{{post.id}}">{{post.comments.length}} Comment(s)</a> --}}
+    </div>
     <button type="submit">Save pokemon</button>
     <button type="button" class="delete-btn">Delete pokemon</button>
   </form>
