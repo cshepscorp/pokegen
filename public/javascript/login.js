@@ -38,7 +38,12 @@ async function loginFormHandler(event) {
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
     //I put the alert element in the handlebars file
-    const alertElDiv = document.querySelector('#login-error-alert');
+    const alertEl = document.querySelector('#login-error-alert');
+
+    if (!username) {
+        alertEl.innerHTML = ` <span class="alertEl rounded">Please enter a username.</span>`;
+        return;
+    }
 
     if (username && password) {
         const response = await fetch(`/api/users/login`, {
@@ -55,7 +60,7 @@ async function loginFormHandler(event) {
         }
         else {
             console.log(response);
-            alertElDiv.innerHTML = `<span class="alertEl rounded">` + response.statusText + `</span>`;
+            alertEl.innerHTML = `<span class="alertEl rounded">` + response.statusText + `</span>`;
         }
     }
 }
