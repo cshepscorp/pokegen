@@ -1,11 +1,20 @@
-<h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{type}} {{type2}}</span></em></h6>
+<h6 class="card-subtitle mb-2 mt-1 muted-text"><em><span>{{type}} {{#if type2}} - {{type2}} {{/if}}</span></em></h6>
 <h5 class="card-title"><a href="/pokemon/{{id}}">{{name}}</a></h5>
 <img class="card-img-top p-2 card-img" src="/images/{{type}}.png" alt="Card image cap">
 <div class="card-body">
     <h5 class="card-text">Moves</h5>
-    <p class="card-text">{{move1}} {{move2}} {{move3}} {{move4}}</p>
-    <h5 class="card-text">Agilities</h5>
-    <p class="card-text">{{ability1}} {{ability2}} {{ability3}}</p>
+    <ul class="card-text">
+        {{#if move1}}<li class="card-text">{{move1}}</li>{{/if}}
+        {{#if move2}}<li class="card-text">{{move2}}</li>{{/if}}
+        {{#if move3}}<li class="card-text">{{move3}}</li>{{/if}}
+        {{#if move4}}<li class="card-text">{{move4}}</li>{{/if}}
+    </ul>
+    <h5 class="card-text">Abilities</h5>
+    <ul class="card-text">
+        {{#if ability1}}<li class="card-text">{{ability1}}</li>{{/if}}
+        {{#if ability2}}<li class="card-text">{{ability2}}</li>{{/if}}
+        {{#if ability3}}<li class="card-text">{{ability3}}</li>{{/if}}
+    </ul>
 
     <h6 class="card-subtitle mb-2 muted-text"><em><span>Created by {{user.username}}</span></em></h6>
 

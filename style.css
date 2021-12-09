@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Exo',arial,sans-serif!important;
+    color: #395ea9!important;
+    background-color: #395ea9!important;
+  }
+  
+  a {
+    text-decoration: none!important;
+    color: #abcbff!important;
+    font-weight: bold;testing/schemaseed
+    transition: color .1s;
+  }
+  
+  a:hover {
+    color: #73a6f9!important;
+  }
+
+  .muted-text {
+    color: #BEBEBE;
+    font-size: 90%;
+  }
+  
+  button {
+    background-color: #225ca3;
+    border: 0;
+    padding: 1%;
+    text-transform:uppercase;
+    color: #fff!important;
+    font-weight: bold;
+    transition: background-color .1s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    color: #73a6f9!important;
+    background-color: #3486eb;
+  }
+
+  /* hero styles */
+.hero {
+    background-image: url('hero-pokegen.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 40px;
+    padding: 250px 0;
+}
+  
+  .post-list {
+    margin: 0;
+    padding: 0;
+  }
+  
+  textarea, input {
+    padding: .5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  textarea:focus, input:focus {
+    outline: none;
+    border: 1px solid #3486eb;
+  }
+  
+  textarea {
+    min-width: 80%;
+    min-height: 100px;
+  }
+  
+  form > div {
+    margin-bottom: 2%;
+  }
+  
+  form label {
+    display: block;
+  }
+  
+  header {
+    border-bottom: 1px solid #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 2% 0 2%;
+    background-color: #333;
+  }
+
+  header a {
+    text-transform:uppercase;
+    font-weight: 200;
+  }
+
+  header button {
+    text-transform:uppercase;
+    font-weight: 200!important;
+    color: #abcbff!important;
+  }
+  
+  header h1 {
+    font-size: 1.5em;
+  }
+  
+  main {
+    flex: 1;
+    padding: 2% 1%;
+    background-color: #fff!important;
+  }
+
+  .card {
+    border: 10px solid #1f1b8f!important;
+    background-color: #fff!important;
+    color: #1f1b8f!important;
+    width: 19rem!important;
+  }
+  
+  .btn-link {
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none!important;
+    color: #225ca3;
+    transition: color .1s;
+    /* margin-left: 16px; */
+  }
+  
+  .btn-no-style:hover {
+    background: none;
+    color: #3486eb;
+  }
+  
+  .delete-btn {
+    color:honeydew;
+    background-color: #d41414;
+  }
+  
+  .delete-btn:hover {
+    background-color: #b40a0a;
+  }
+  
+  .post {
+    margin-bottom: 2%;
+    line-height: 150%;
+  }
+  
+  .post .title span {
+    font-style: italic;
+    font-size: 90%;
+    color: #7d7d7d;
+  }
+  
+  .edit-link {
+    display: block;
+    margin: -1.5% 0 2% 0;
+  }
+  
+  .upvote-btn {
+    background-color: #197d0f;
+    transition: background-color .1s;
+  }
+  
+  .upvote-btn:hover {
+    background-color: #1f9c13;
+  }
+  
+  .comment-form {
+    margin-bottom: 5%;
+  }
+  
+  .comment {
+    padding: 1%;
+    margin-bottom: 1%;
+    background-color: #BEBEBE;
+  }
+  
+  .comment-text {
+    color: #808080;
+  }
+  .comment:nth-child(odd) {
+    background-color: #ececec;
+  }
+  
+  .comment .meta {
+    font-size: 80%;
+    font-weight: bold;
+    color:#484848;
+    margin-bottom: .5%;
+    opacity: .6;
+  }
+  
+  .new-post-form input {
+    width: 300px;
+  }
+  
+  .edit-post-form {
+    margin-bottom: 5%;
+  }
+  
+  footer {
+    border-top: 1px solid #777;
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    font-size: 110%;
+  }
+
+  .hide {
+    display: none;
+  }

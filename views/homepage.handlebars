@@ -1,24 +1,27 @@
 <!-- Hero Section -->
-        <section class="hero">
-            <!-- <h2>Hi!<br />I'm Christy</h2> -->
-        </section>
-
-
-<div class="pt-2">
-    <h2 class="text-center">User-Generated Pokemon</h2>
-     {{#if loggedIn}}
-      <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
-     {{else}}
-     <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
-     {{/if}}
-            
+<div class="container-fluid">
+    <section class="hero"></section>
 </div>
-{{#if pokemons.length}}
-{{#each pokemons as |pokemon|}}
-<div class="card p-2 m-2 rounded shadow">
-    {{> pokemon-data pokemon }}
-    <a href="/pokemon/{{id}}" class="stretched-link"></a>
-</div>
+<!-- Content Section - list of all pokemon -->
+<div class="container padded-div">
+    <div class="row justify-content-center">
+        <div class="pt-2">
+                <h2 class="text-center">User-Generated Pokemon</h2>
+                {{#if loggedIn}}
+                <h4 class="text-center"><a class="red" href="/dashboard" style="color: #bd2439!important;">Head to your dashboard</a> to create your own!</h4>
+                {{else}}
+                <h4 class="text-center"><a class="red" href="/login" style="color: #bd2439!important;">Login</a> to create your own!</h4>  
+                {{/if}}
+                        
+            </div>
+            {{#if pokemons.length}}
+            {{#each pokemons as |pokemon|}}
+            <div class="card p-2 m-2 rounded shadow">
+                {{> pokemon-data pokemon }}
+                <a href="/pokemon/{{id}}" class="stretched-link"></a>
+            </div>
                 
-{{/each}}
-{{/if}}
+            {{/each}}
+            {{/if}}
+    </div>
+</div>
