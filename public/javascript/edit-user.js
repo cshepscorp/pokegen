@@ -2,13 +2,15 @@ async function editUserHandler(event) {
   event.preventDefault();
   const username = document.querySelector('#username-edit').value.trim();
   const password = document.querySelector('#password-edit').value.trim();
+  const alertEl = document.getElementById("edit-alert");
 
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
 
   if (password.length < 4) {
-    alert('Please enter a password with at least 4 characters');
+    alertEl.innerHTML = ` <span class="alertEl rounded">Password must be 4+ characters.</span>`;
+    return;
   }
 
   if (username && password) {
@@ -25,7 +27,7 @@ async function editUserHandler(event) {
       if (response.ok) {
           document.location.replace('/');
       } else {
-          alert('Username already exists. Please enter a different username');
+        alertEl.innerHTML = ` <span class="alertEl rounded">` + response.statusText + `</span>`;
       }
   }
 }

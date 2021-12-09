@@ -6,10 +6,9 @@ function addClass() {
   createButton.remove();
 };
 
-const nameAlertEl = document.querySelector(".pokemon-name");
-const typeAlertEl = document.querySelector(".pokemon-type");
-const moveAlertEl = document.querySelector(".move1");
-const abilityAlertEl = document.querySelector(".ability1");
+const nameAlertEl = document.querySelector("#name-alert");
+const typeAlertEl = document.querySelector("#type-alert");
+const submitAlertEl = document.querySelector("#submit-alert");
     
 async function newFormHandler(event) {
     event.preventDefault();
@@ -26,30 +25,22 @@ async function newFormHandler(event) {
     const ability3 = document.querySelector('input[name="ability3"]').value;
 
     if (!name) {
-      const nameAlertElDiv = document.createElement('span');
-      nameAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must create a name</span>`;
-      nameAlertEl.append(nameAlertElDiv);
+      nameAlertEl.innerHTML = `<span class="alert-msg rounded"> You must create a name</span>`;
       return;
     }
 
     if (type === 'Select a type here!') {
-      const typeAlertElDiv = document.createElement('span');
-      typeAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one type</span>`;
-      typeAlertEl.append(typeAlertElDiv);
+      typeAlertEl.innerHTML = ` <span class="alert-msg rounded">You must enter a type here</span>`;
       return;
     }
 
-    if (!move1) {
-      const moveAlertElDiv = document.createElement('span');
-      moveAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one move</span>`;
-      moveAlertEl.append(moveAlertElDiv);
+    if (!move1 && !move2 && !move3 && !move4) {
+      submitAlertEl.innerHTML = ` <span class="alertEl rounded">You must select at least one move</span>`;
       return;
     }
 
-    if (!ability1) {
-      const abilityAlertElDiv = document.createElement('span');
-      abilityAlertElDiv.innerHTML = ` <span class="alert-msg rounded">You must select at least one ability</span>`;
-      abilityAlertEl.append(abilityAlertElDiv);
+    if (!ability1 && !ability2 && !ability3) {
+      submitAlertEl.innerHTML = ` <span class="alertEl rounded">You must select at least one ability</span>`;
       return;
     }
 
