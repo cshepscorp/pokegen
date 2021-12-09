@@ -130,6 +130,7 @@ router.put('/:id', (req, res) => {
   })
   .then(dbUserData => {
     if (dbUserData && dbUserData.username != req.session.username) {
+      res.statusMessage = "Username already exists!";
       res.status(400).json({ message: 'Username already exists' });
       return;
     }
