@@ -230,7 +230,7 @@ footer {
       text-align: center;
   }
   .card {
-      flex: 100%;
+      flex: 90%;
       margin-right: 20px;
   }
   .btn-link { 

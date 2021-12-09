@@ -25,22 +25,22 @@ async function newFormHandler(event) {
     const ability3 = document.querySelector('input[name="ability3"]').value;
 
     if (!name) {
-      nameAlertEl.innerHTML = `<span class="alert-msg rounded"> You must create a name</span>`;
+      nameAlertEl.innerHTML = `<div class="alert-msg rounded"> You must create a name</div>`;
       return;
     }
 
     if (type === 'Select a type here!') {
-      typeAlertEl.innerHTML = ` <span class="alert-msg rounded">You must enter a type here</span>`;
+      typeAlertEl.innerHTML = ` <div class="alert-msg rounded">You must enter a type here</div>`;
       return;
     }
 
     if (!move1 && !move2 && !move3 && !move4) {
-      submitAlertEl.innerHTML = ` <span class="alertEl rounded">You must select at least one move</span>`;
+      submitAlertEl.innerHTML = ` <div class="alertEl rounded">You must select at least one move</div>`;
       return;
     }
 
     if (!ability1 && !ability2 && !ability3) {
-      submitAlertEl.innerHTML = ` <span class="alertEl rounded">You must select at least one ability</span>`;
+      submitAlertEl.innerHTML = ` <div class="alertEl rounded">You must select at least one ability</div>`;
       return;
     }
 

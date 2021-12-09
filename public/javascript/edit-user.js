@@ -9,7 +9,7 @@ async function editUserHandler(event) {
   ];
 
   if (password.length < 4) {
-    alertEl.innerHTML = ` <span class="alertEl rounded">Password must be 4+ characters.</span>`;
+    alertEl.innerHTML = ` <div class="alertEl rounded">Password must be 4+ characters.</div>`;
     return;
   }
 
@@ -27,7 +27,7 @@ async function editUserHandler(event) {
       if (response.ok) {
           document.location.replace('/');
       } else {
-        alertEl.innerHTML = ` <span class="alertEl rounded">` + response.statusText + `</span>`;
+        alertEl.innerHTML = ` <div class="alertEl rounded">` + response.statusText + `</div>`;
       }
   }
 }

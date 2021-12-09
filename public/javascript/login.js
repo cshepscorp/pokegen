@@ -6,12 +6,12 @@ async function signupFormHandler(event) {
     const alertEl = document.querySelector("#signup-error-alert");
 
     if (!username) {
-        alertEl.innerHTML = ` <span class="alertEl rounded">Please enter a username.</span>`;
+        alertEl.innerHTML = ` <div class="alertEl rounded">Please enter a username.</div>`;
         return;
     }
     
     if (password.length < 4) {
-        alertEl.innerHTML = ` <span class="alertEl rounded">Password needs at least 4 characters!</span>`;
+        alertEl.innerHTML = ` <div class="alertEl rounded">Password needs at least 4 characters!</div>`;
         return;
     }
 
@@ -28,7 +28,7 @@ async function signupFormHandler(event) {
         if (response.ok) {
             document.location.replace('/');
         } else {
-            alertEl.innerHTML = `<span class="alertEl rounded">` + response.statusText + `</span>`;
+            alertEl.innerHTML = `<div class="alertEl rounded">` + response.statusText + `</div>`;
         }
     }
 }
@@ -41,7 +41,7 @@ async function loginFormHandler(event) {
     const alertEl = document.querySelector('#login-error-alert');
 
     if (!username) {
-        alertEl.innerHTML = ` <span class="alertEl rounded">Please enter a username.</span>`;
+        alertEl.innerHTML = ` <div class="alertEl rounded">Please enter a username.</div>`;
         return;
     }
 
@@ -60,7 +60,7 @@ async function loginFormHandler(event) {
         }
         else {
             console.log(response);
-            alertEl.innerHTML = `<span class="alertEl rounded">` + response.statusText + `</span>`;
+            alertEl.innerHTML = `<div class="alertEl rounded">` + response.statusText + `</div>`;
         }
     }
 }
