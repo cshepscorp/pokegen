@@ -233,6 +233,9 @@ footer {
       flex: 90%;
       margin-right: 20px;
   }
+  .btn {
+    max-width: 90%!important;
+}
   .btn-link { 
     font-size: 1.2em;
     font-weight: 500!important;
