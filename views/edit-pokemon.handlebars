@@ -7,7 +7,7 @@
       </h2>
       <form class="edit-pokemon-form">
         <label for="pokemon-name">Edit your pokemon's name:</label>
-        <input type="text" name="pokemon-name" id="pokemon-name" value="{{pokemon.name}}" />
+        <input type="text" name="pokemon-name" id="pokemon-name" value="{{pokemon.name}}" maxlength="20"/>
         <br><br>
         <label for="types">Choose one your first Pokemon type:</label>
         <select type="types" id="type1">
@@ -24,45 +24,39 @@
         {{!-- moves --}}
         
         <label for="move1">Enter your pokemon's move:</label>
-        <input type="text" name="move1" id="move1" value="{{pokemon.move1}}" />
+        <input type="text" name="move1" id="move1" value="{{pokemon.move1}}" maxlength="25"/>
         <br><br>
 
         <label for="move2">Enter your pokemon's move:</label>
-        <input type="text" name="move2" id="move2" value="{{pokemon.move2}}"/>
+        <input type="text" name="move2" id="move2" value="{{pokemon.move2}}" maxlength="25"/>
         <br><br>
 
         <label for="move3">Enter your pokemon's move:</label>
-        <input type="text" name="move3" id="move3" value="{{pokemon.move3}}" />
+        <input type="text" name="move3" id="move3" value="{{pokemon.move3}}" maxlength="25"/>
         <br><br>
 
         <label for="move4">Enter your pokemon's move:</label>
-        <input type="text" name="move4" id="move4" value="{{pokemon.move4}}" />
+        <input type="text" name="move4" id="move4" value="{{pokemon.move4}}" maxlength="25"/>
         <br><br>
 
         {{!-- abilities --}}
 
         <label for="ability1">Enter your pokemon's first ability:</label>
-        <input type="text" name="ability1" id="ability1" value="{{pokemon.ability1}}"/>
+        <input type="text" name="ability1" id="ability1" value="{{pokemon.ability1}}" maxlength="25"/>
         <br><br>
 
         <label for="ability2">Enter your pokemon's second ability:</label>
-        <input type="text" name="ability2" id="ability2" value="{{pokemon.ability2}}"/>
+        <input type="text" name="ability2" id="ability2" value="{{pokemon.ability2}}" maxlength="25"/>
         <br><br>
 
         <label for="ability3">Enter your pokemon's third ability:</label>
-        <input type="text" name="ability3" id="ability3" value="{{pokemon.ability3}}"/>
+        <input type="text" name="ability3" id="ability3" value="{{pokemon.ability3}}" maxlength="25"/>
         <br><br>
 
-    {{!-- <div>
-      <input name="post-text" type="text" value="{{post.post_text}}" />
-    </div> --}}
-    <div>
-      {{!-- Posted by {{post.user.username}} on {{format_date post.created_at}}
-      |
-      <a href="./../{{post.id}}">{{post.comments.length}} Comment(s)</a> --}}
-    </div>
     <button type="submit">Save pokemon</button>
     <button type="button" class="delete-btn">Delete pokemon</button>
+    <br><br>
+    <div id="edit-alert"></div>
   </form>
 </article>
 
