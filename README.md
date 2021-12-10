@@ -11,6 +11,6 @@
   ## Created by:
   Feel free to reach out to us with any questions
   * Mike Lankenau - [Find me on GitHub](https://github.com/mtlankenau)
-  * Christina Sheppard - [Find me on GitHub](https://github.com/cshepcsorp/) 
   * Robert Reedy - [Find me on GitHub](https://github.com/RobertAReedy)
+  * Christina Sheppard - [Find me on GitHub](https://github.com/cshepcsorp/)
   * Jordan Yanev - [Find me on GitHub](https://github.com/jyanev01)
