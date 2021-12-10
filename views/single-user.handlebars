@@ -1,0 +1,8 @@
+<h2 class="m-3">{{selectedUser.username}}</h2>
+{{#each selectedUser.pokemons as |pokemon|}}
+<div class="card p-2 m-2 rounded shadow">
+  <div class="card-body">
+    {{> pokemon-data pokemon }}
+  </div>
+</div>
+{{/each}}
