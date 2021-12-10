@@ -3,11 +3,11 @@
     <div class="card login-card p-2 m-2 rounded">
       <a href="/"> &larr; Cancel</a>
       <div class="card-body">
-        <h2 class="">Edit Account Info</h2> 
+        <h2 class="">Edit Account Info</h2>
         <form class="edit-form">
           <div class="form-group">
             <label for="username-edit">Username</label>
-            <input type="username" value="{{users.username}}" id="username-edit" />
+            <input type="username" value="{{users.username}}" id="username-edit" maxlength="20"/>
           </div>
           <div class="form-group">
             <label for="password-edit">Password</label>
@@ -16,6 +16,8 @@
           <div>
             <button type="submit" class="btn btn-primary">Submit Change</button>
           </div>
+          <br><br>
+          <div id="edit-alert"></div>
         </form>
       </div>
     </div>

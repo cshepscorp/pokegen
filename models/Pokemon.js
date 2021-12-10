@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Pokemon extends Model {}
+class Pokemon extends Model { }
 
 Pokemon.init(
     { // defining the schema
-        id: { 
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -52,7 +52,7 @@ Pokemon.init(
             }
         }
     },
-    { // configure the metadata
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

@@ -4,7 +4,7 @@ const sequelize = require('./config/connection');
 const app = express();
 // use Heroku's process.env.PORT value when deployed and 3001 when run locally
 const PORT = process.env.PORT || 3001;
-const path = require('path'); 
+const path = require('path');
 
 const helpers = require('./utils/helpers'); // for help formatting dates
 
@@ -43,7 +43,5 @@ app.use(routes);
 
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
-  });
-
-  // test
+  app.listen(PORT, () => console.log('Now listening'));
+});

@@ -2,9 +2,16 @@ async function signupFormHandler(event) {
     event.preventDefault();
     const username = document.querySelector('#username-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+    //I put the alert element in the handlebars file.
+    const alertEl = document.querySelector("#signup-error-alert");
 
+    if (!username) {
+        alertEl.innerHTML = ` <div class="alertEl rounded">Please enter a username.</div>`;
+        return;
+    }
+    
     if (password.length < 4) {
-        alert('Please enter a password with at least 4 characters');
+        alertEl.innerHTML = ` <div class="alertEl rounded">Password needs at least 4 characters!</div>`;
         return;
     }
 
@@ -17,24 +24,11 @@ async function signupFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
-
-        // check the response status
+    
         if (response.ok) {
-            console.log('success');
             document.location.replace('/');
         } else {
-            fetch('/api/users')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].username === username) {
-                        alert('An account with this username already exists. Please enter a different username!');
-                    }
-                }
-            })
+            alertEl.innerHTML = `<div class="alertEl rounded">` + response.statusText + `</div>`;
         }
     }
 }
@@ -43,6 +37,13 @@ async function loginFormHandler(event) {
     event.preventDefault();
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
+    //I put the alert element in the handlebars file
+    const alertEl = document.querySelector('#login-error-alert');
+
+    if (!username) {
+        alertEl.innerHTML = ` <div class="alertEl rounded">Please enter a username.</div>`;
+        return;
+    }
 
     if (username && password) {
         const response = await fetch(`/api/users/login`, {
@@ -53,29 +54,13 @@ async function loginFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
-
-        // check the response status
+        
         if (response.ok) {
             document.location.replace('/');
-        } else {
-            fetch('api/users')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                let found = false;
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].username === username) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    alert('The entered username does not exist! Please enter a valid username or sign up as a new user!')
-                } else if (found) {
-                    alert('Invalid password. Please enter the correct password for this username!')
-                }
-            })
+        }
+        else {
+            console.log(response);
+            alertEl.innerHTML = `<div class="alertEl rounded">` + response.statusText + `</div>`;
         }
     }
 }

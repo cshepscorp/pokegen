@@ -5,58 +5,72 @@
     <section id="create-pokemon" class="hide">
       <h2>Create New Pokemon</h2>
       <form class="new-pokemon-form">
-      <label for="pokemon-name">Enter your pokemon's name (required):</label>
-      <input type="text" name="pokemon-name" id="pokemon-name" />
-      <br><br>
+        <div>
+          <label for="pokemon-name" class="pokemon-name">
+            Enter your pokemon's name (required):
+            <span id="name-alert"></span>
+          </label>
+          <input type="text" name="pokemon-name" id="pokemon-name" maxlength="20"/>
+        </div>
+        <div class="pokemon-type">
+          <label for="type">
+            Choose your first Pokemon type (required):
+            <span id="type-alert"></span>
+            </label>
+          <select type="type" id="type">
+            <option selected disabled hidden>Select a type here!</option>
+            {{> type-options }}
+          </select>
+        </div>
 
-      <label for="type">Choose your first Pokemon type (required):</label>
-      <select type="type" id="type">
-        {{> type-options }}
-      </select>
-      <br><br>
+        <label for="type2">Choose your second Pokemon type:</label>
+        <select type="type2" id="type2">
+          <option value="">None</option>
+          {{> type-options }}
+        </select>
+        <br><br>
 
-      <label for="type2">Choose your second Pokemon type:</label>
-      <select type="type2" id="type2">
-        <option value="">None</option>
-        {{> type-options }}
-      </select>
-      <br><br>
+        {{!-- moves --}}
 
-    {{!-- moves --}}
-      <label for="move1">Enter your pokemon's first move (required):</label>
-      <input type="text" name="move1" id="move1" />
-      <br><br>
+        <div class="move1" id="first-move">
+          <label for="move1">Enter your pokemon's first move (required):</label>
+          <input type="text" name="move1" id="move1" onfocus="showMove2()" maxlength="25"/>
+        </div>
 
-      <label for="move2">Enter your pokemon's second move:</label>
-      <input type="text" name="move2" id="move2" />
-      <br><br>
+        <div class="hide" id="second-move">
+          <label for="move2">Enter your pokemon's second move:</label>
+          <input type="text" name="move2" id="move2" onfocus="showMove3()" maxlength="25"/>
+        </div>
+        <div class="hide" id="third-move">
+          <label for="move3">Enter your pokemon's third move:</label>
+          <input type="text" name="move3" id="move3" onfocus="showMove4()" maxlength="25"/>
+        </div>
+        <div class="hide" id="fourth-move">
+          <label for="move4">Enter your pokemon's fourth move:</label>
+          <input type="text" name="move4" id="move4" maxlength="25"/>
+        </div>
 
-      <label for="move3">Enter your pokemon's third move:</label>
-      <input type="text" name="move3" id="move3" />
-      <br><br>
+        {{!-- abilities --}}
+        <div class="ability1" id="first-ability">
+          <label for="ability1" aria-required="">Enter your pokemon's first ability (required):</label>
+          <input type="text" name="ability1" id="ability1" onfocus="showAbility2()" maxlength="25"/>
+        </div>
+        <div class="hide" id="second-ability">
+          <label for="ability2">Enter your pokemon's second ability:</label>
+          <input type="text" name="ability2" id="ability2" onfocus="showAbility3()" maxlength="25"/>
+        </div>
+        <div class="hide" id="third-ability">
+          <label for="ability3">Enter your pokemon's third ability:</label>
+          <input type="text" name="ability3" id="ability3" maxlength="25"/>
+        </div>
 
-      <label for="move4">Enter your pokemon's fourth move:</label>
-      <input type="text" name="move4" id="move4" />
-      <br><br>
-
-    {{!-- abilities --}}
-
-      <label for="ability1" aria-required="">Enter your pokemon's first ability (required):</label>
-      <input type="text" name="ability1" id="ability1" />
-      <br><br>
-
-      <label for="ability2">Enter your pokemon's second ability:</label>
-      <input type="text" name="ability2" id="ability2" />
-      <br><br>
-
-      <label for="ability3">Enter your pokemon's third ability:</label>
-      <input type="text" name="ability3" id="ability3" />
-      <br><br>
-
-      <input type="submit" value="Submit">
-    </form>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <br><br>
+        <div id="submit-alert"></div>
+      </form>
 
     </section>
+
     {{!-- List of users existing Pokemon --}}
     {{#if pokemons.length}}
     <h2 class="m-3">My Pokemon</h2>
@@ -72,5 +86,7 @@
   </div>
 </div>
 
- <script src="/javascript/submit-pokemon.js"></script>
-
+{{!-- performs create pokemon functionality --}}
+<script src="/javascript/submit-pokemon.js"></script>
+{{!-- makes create pokemon form more user-friendly --}}
+<script src="/javascript/form-display.js"></script>

@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const session = require('express-session');
 const { User, Pokemon } = require('../../models');
 
-// GET /api/users
+// gets every user
 router.get('/', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// GET /api/users/1
+// gets a single user
 router.get('/:id', (req, res) => {
   User.findOne({
     attributes: { exclude: ['password'] },
@@ -38,29 +39,41 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// POST create a new user
+// creates a new user
 router.post('/', (req, res) => {
-  User.create({
-    username: req.body.username,
-    password: req.body.password
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
   })
-  .then(dbUserData => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
-  
-      res.json(dbUserData);
-    });
+  .then(userdata => {
+    if (userdata) {
+      res.statusMessage = "Username already exists!";
+      res.status(400).json();
+      return;
+    } else {
+      User.create({
+        username: req.body.username,
+        password: req.body.password
+      })
+      .then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+      
+          res.json(dbUserData);
+        });
+      })
+    }
   })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 // verify user during login
-// POST method carries the request parameter in req.body, which makes it a more secure way of transferring data from the client to the server
 router.post('/login', (req, res) => {
 
     User.findOne({
@@ -69,13 +82,15 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.status(400).json({ message: 'No user with that username exists!' });
+          res.statusMessage = "No user with that username exists!";
+          res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
+            res.statusMessage = "Incorrect password!"
+            res.status(400).json();
             return;
           }
 
@@ -90,6 +105,7 @@ router.post('/login', (req, res) => {
            });  
         });
   });
+  
 // logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
@@ -102,26 +118,43 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// PUT /api/users/1
+/**
+ * Updates a user, allowing changes to name or password, as long
+ * as they don't pick a username already in use (that isn't their own)
+ */
 router.put('/:id', (req, res) => {
-    // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
-  User.update(req.body, {
-    individualHooks: true,
+  User.findOne({
     where: {
-      id: req.params.id
+      username: req.body.username
     }
   })
-    .then(dbUserData => {
-      if (!dbUserData[0]) {
-        res.status(404).json({ message: 'No user found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  .then(dbUserData => {
+    if (dbUserData && dbUserData.username != req.session.username) {
+      res.statusMessage = "Username already exists!";
+      res.status(400).json({ message: 'Username already exists' });
+      return;
+    }
+    else {
+      User.update(req.body, {
+        individualHooks: true,
+        where: {
+          id: req.params.id
+        }
+      })
+        .then(dbUserData => {
+          if (!dbUserData[0]) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+          }
+          res.json(dbUserData);
+        })
+    }
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+    
 });
 
 // DELETE /api/users/1

@@ -6,14 +6,10 @@ function addClass() {
   createButton.remove();
 };
 
-// const typeTwo = document.getElementById("type2")
-// let newOpt = document.createElement("option")
-// newOpt.setAttribute("value", "test")
-// newOpt.textContent = "test"
-
-// typeTwo.appendChild(newOpt)
-
-
+const nameAlertEl = document.querySelector("#name-alert");
+const typeAlertEl = document.querySelector("#type-alert");
+const submitAlertEl = document.querySelector("#submit-alert");
+    
 async function newFormHandler(event) {
     event.preventDefault();
     
@@ -27,7 +23,27 @@ async function newFormHandler(event) {
     const ability1 = document.querySelector('input[name="ability1"]').value;
     const ability2 = document.querySelector('input[name="ability2"]').value;
     const ability3 = document.querySelector('input[name="ability3"]').value;
-  
+
+    if (!name) {
+      nameAlertEl.innerHTML = `<div class="alert-msg rounded"> You must create a name</div>`;
+      return;
+    }
+
+    if (type === 'Select a type here!') {
+      typeAlertEl.innerHTML = ` <div class="alert-msg rounded">You must enter a type here</div>`;
+      return;
+    }
+
+    if (!move1 && !move2 && !move3 && !move4) {
+      submitAlertEl.innerHTML = ` <div class="alertEl rounded">You must select at least one move</div>`;
+      return;
+    }
+
+    if (!ability1 && !ability2 && !ability3) {
+      submitAlertEl.innerHTML = ` <div class="alertEl rounded">You must select at least one ability</div>`;
+      return;
+    }
+
     const response = await fetch(`/api/pokemon`, {
       method: 'POST',
       body: JSON.stringify({
