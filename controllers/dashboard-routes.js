@@ -21,7 +21,11 @@ router.get('/', withAuth, (req, res) => {
           const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
           console.table(pokemons);
           // user won't be able to get to the dashboard page unless they're logged in
-          res.render('dashboard', { pokemons, loggedIn: true, user: req.session.user_id });
+          res.render('dashboard', { pokemons,
+            loggedIn: true,
+            user: req.session.user_id,
+            currentUser: req.session.username
+          });
         })
         .catch(err => {
           console.log(err);

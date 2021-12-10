@@ -26,6 +26,7 @@ async function editUserHandler(event) {
       // check the response status
       if (response.ok) {
           document.location.replace('/');
+          console.log(response);
       } else {
         alertEl.innerHTML = ` <div class="alertEl rounded">` + response.statusText + `</div>`;
       }

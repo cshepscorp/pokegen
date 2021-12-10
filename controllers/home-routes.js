@@ -14,7 +14,13 @@ router.get('/', (req, res) => {
         .then(dbPokemonData => {
           const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           // console.table(pokemons);
-          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn, user: req.session.user_id });
+          res.render('homepage', {
+            pokemons,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user_id,
+            currentUser: req.session.username
+          });
+          console.log(req.session.username);
         })
         .catch(err => {
           console.log(err);
@@ -36,7 +42,7 @@ router.get('/login', (req, res) => {
 router.get('/users/:id', (req, res) => {
     User.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
     })
     .then(dbUserData => {
@@ -54,7 +60,8 @@ router.get('/users/:id', (req, res) => {
     res.render('edit-users', {
       users,
       user: req.session.user_id,
-      loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn,
+      currentUser: req.session.username
     });
   });
 });
@@ -87,7 +94,8 @@ router.get('/pokemon/:id', (req, res) => {
         pokemons,
         loggedIn: req.session.loggedIn,
         owner,
-        user: req.session.user_id
+        user: req.session.user_id,
+        currentUser: req.session.username
       });
     })
     .catch(err => {
