@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+.alertEl {
+  color: red;
+  background-color: #fff;
+  border: 1px solid red;
+  padding: 2%;
+  font-size:13px;
+}
+
+.alert-msg {
+  color: red;
+}
 body, html {
   height: 100%;
   padding: 0;
@@ -186,10 +197,16 @@ main {
 
 footer {
   border-top: 1px solid #777;
-  display: flex;
   justify-content: center;
   padding: 1%;
   font-size: 90%;
+  color: #1d2c5e;
+  text-align:center;
+}
+
+#datetime { 
+  font-weight: bold; 
+  font-size: 110%!important;
 }
 
 .hide {
@@ -213,9 +230,12 @@ footer {
       text-align: center;
   }
   .card {
-      flex: 100%;
+      flex: 90%;
       margin-right: 20px;
   }
+  .btn {
+    max-width: 90%!important;
+}
   .btn-link { 
     font-size: 1.2em;
     font-weight: 500!important;

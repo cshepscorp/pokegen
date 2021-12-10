@@ -18,6 +18,21 @@ async function editFormHandler(event) {
   const ability2 = document.querySelector('input[name="ability2"]').value;
   const ability3 = document.querySelector('input[name="ability3"]').value;
 
+  const alertEl = document.getElementById("edit-alert");
+
+  if (name == "") {
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be a name." + `</div>`;
+    return;
+  }
+  if (move1 === "" && move2 === "" && move3 === "" && move4 === "") {
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be at least one move." + `</div>`;
+    return;
+  } 
+  if (ability1 === "" && ability2 === "" && ability3 === "") {
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be at least one ability." + `</div>`;
+    return;
+  }
+
   console.log('data attributes' + document.querySelector('input[name="ability3"]').value);
   const response = await fetch(`/api/pokemon/${id}`, {
     method: 'PUT',
@@ -36,9 +51,8 @@ async function editFormHandler(event) {
   if (response.ok) {
     document.location.replace('/dashboard');
   } else {
-    alert(response.statusText);
+    alertEl.innerHTML = `<div class="alertEl rounded">` + response.statusText + `</div>`;
   }
-  console.log('this is the end of the function');
 }
 
 document.querySelector('.edit-pokemon-form').addEventListener('submit', editFormHandler);

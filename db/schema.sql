@@ -4,7 +4,7 @@ USE pokegen_db;
 
 CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(20) NOT NULL,
+    username VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL
 );
 
@@ -14,11 +14,11 @@ CREATE TABLE pokemon (
     name VARCHAR(20) NOT NULL,
     type VARCHAR(8) NOT NULL,
     type2 VARCHAR(8),
-    move1 VARCHAR(25),
+    move1 VARCHAR(25) NOT NULL,
     move2 VARCHAR(25),
     move3 VARCHAR(25),
     move4 VARCHAR(25),
-    ability1 VARCHAR(25),
+    ability1 VARCHAR(25) NOT NULL,
     ability2 VARCHAR(25),
     ability3 VARCHAR(25),
     user_id INTEGER NOT NULL,

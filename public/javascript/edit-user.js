@@ -2,10 +2,16 @@ async function editUserHandler(event) {
   event.preventDefault();
   const username = document.querySelector('#username-edit').value.trim();
   const password = document.querySelector('#password-edit').value.trim();
+  const alertEl = document.getElementById("edit-alert");
 
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
+
+  if (password.length < 4) {
+    alertEl.innerHTML = ` <div class="alertEl rounded">Password must be 4+ characters.</div>`;
+    return;
+  }
 
   if (username && password) {
       const response = await fetch(`/api/users/${id}`, {
@@ -21,7 +27,7 @@ async function editUserHandler(event) {
       if (response.ok) {
           document.location.replace('/');
       } else {
-          alert(response.statusText);
+        alertEl.innerHTML = ` <div class="alertEl rounded">` + response.statusText + `</div>`;
       }
   }
 }
