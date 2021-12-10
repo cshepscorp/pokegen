@@ -66,8 +66,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
         // pass data to template
         res.render('edit-pokemon', { 
           pokemon,
-          // loggedIn: req.session.loggedIn,
-          // user: req.session.user_id
+          loggedIn: req.session.loggedIn,
+          user: req.session.user_id,
+          currentUser: req.session.username
         });
     })  
     .catch(err => {
