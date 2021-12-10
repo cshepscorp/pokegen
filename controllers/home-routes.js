@@ -111,6 +111,9 @@ router.get('/pokemon/:id', (req, res) => {
           model: Pokemon,
           attributes: ['name', 'type', 'type2', 'move1', 'move2', 'move3', 'move4', 'ability1', 'ability2', 'ability3']
         }
+      ],
+      order: [
+        ['username', 'DESC'],
       ]
     })
     .then(dbUserData => {
