@@ -23,7 +23,8 @@
         <nav>
           {{#if loggedIn}}
           <button id="logout" class="btn-link">logout</button> | 
-          <a href="/users/{{user}}">update "{{currentUser}}"</a> |
+          {{!-- <a href="/users/{{user}}">update "{{currentUser}}"</a> | --}}
+          <a href="/users/{{user}}">update user</a> |
           {{else}}
           <a href="/login">login</a> | 
           {{/if}}
