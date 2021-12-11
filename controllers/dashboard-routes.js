@@ -18,10 +18,14 @@ router.get('/', withAuth, (req, res) => {
         ]
       })
         .then(dbPokemonData => {
-          const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
+          const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           console.table(pokemons);
           // user won't be able to get to the dashboard page unless they're logged in
-          res.render('dashboard', { pokemons, loggedIn: true, user: req.session.user_id });
+          res.render('dashboard', { pokemons,
+            loggedIn: true,
+            user: req.session.user_id,
+            currentUser: req.session.username
+          });
         })
         .catch(err => {
           console.log(err);
@@ -62,8 +66,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
         // pass data to template
         res.render('edit-pokemon', { 
           pokemon,
-          // loggedIn: req.session.loggedIn,
-          // user: req.session.user_id
+          loggedIn: req.session.loggedIn,
+          user: req.session.user_id,
+          currentUser: req.session.username
         });
     })  
     .catch(err => {

@@ -1,0 +1,18 @@
+<div class="container padded-div">
+  <div class="row justify-content-center">
+    
+    <a href="/find-users"> &larr; Back to list of Users</a>
+    <h2 class="m-3">{{selectedUser.username}}</h2>
+    {{#if selectedUser.pokemons}}
+    {{#each selectedUser.pokemons as |pokemon|}}
+    <div class="card p-2 m-2 rounded shadow">
+      <div class="card-body">
+        {{> pokemon-data pokemon }}
+      </div>
+    </div>
+    {{/each}}
+{{else}}
+  This user hasn't created any Pokemon yet.
+        {{/if}}
+  </div>
+</div>

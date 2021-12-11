@@ -28,10 +28,16 @@ router.get('/:id', (req, res) => {
   })
     .then(dbUserData => {
       if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: 'No user found with this id.' });
         return;
       }
-      res.json(dbUserData);
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+
+        res.json(dbUserData);
+      })
     })
     .catch(err => {
       console.log(err);
@@ -48,7 +54,7 @@ router.post('/', (req, res) => {
   })
   .then(userdata => {
     if (userdata) {
-      res.statusMessage = "Username already exists!";
+      res.statusMessage = "Username already exists.";
       res.status(400).json();
       return;
     } else {
@@ -82,14 +88,14 @@ router.post('/login', (req, res) => {
         }
       }).then(dbUserData => {
         if (!dbUserData) {
-          res.statusMessage = "No user with that username exists!";
+          res.statusMessage = "No user with that username exists.";
           res.status(400).json();
           return;
         }
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.statusMessage = "Incorrect password!"
+            res.statusMessage = "Incorrect password."
             res.status(400).json();
             return;
           }
@@ -100,7 +106,7 @@ router.post('/login', (req, res) => {
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
           
-          res.json({ user: dbUserData, message: 'You are now logged in!' });
+          res.json({ user: dbUserData, message: 'You are now logged in.' });
           
            });  
         });
@@ -130,8 +136,8 @@ router.put('/:id', (req, res) => {
   })
   .then(dbUserData => {
     if (dbUserData && dbUserData.username != req.session.username) {
-      res.statusMessage = "Username already exists!";
-      res.status(400).json({ message: 'Username already exists' });
+      res.statusMessage = "Username already exists.";
+      res.status(400).json({ message: 'Username already exists.' });
       return;
     }
     else {
@@ -143,10 +149,16 @@ router.put('/:id', (req, res) => {
       })
         .then(dbUserData => {
           if (!dbUserData[0]) {
-            res.status(404).json({ message: 'No user found with this id' });
+            res.status(404).json({ message: 'No user found with this id.' });
             return;
           }
-          res.json(dbUserData);
+          req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json(dbUserData);
+          })
         })
     }
   })
@@ -166,7 +178,7 @@ router.delete('/:id', (req, res) => {
       })
         .then(dbUserData => {
           if (!dbUserData) {
-            res.status(404).json({ message: 'No user found with this id' });
+            res.status(404).json({ message: 'No user found with this id.' });
             return;
           }
           res.json(dbUserData);

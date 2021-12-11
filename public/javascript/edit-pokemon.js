@@ -21,15 +21,15 @@ async function editFormHandler(event) {
   const alertEl = document.getElementById("edit-alert");
 
   if (name == "") {
-    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be a name." + `</div>`;
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "Please enter a name." + `</div>`;
     return;
   }
   if (move1 === "" && move2 === "" && move3 === "" && move4 === "") {
-    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be at least one move." + `</div>`;
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "Please enter at least one move." + `</div>`;
     return;
   } 
   if (ability1 === "" && ability2 === "" && ability3 === "") {
-    alertEl.innerHTML = `<div class="alertEl rounded">` + "There needs to be at least one ability." + `</div>`;
+    alertEl.innerHTML = `<div class="alertEl rounded">` + "Please enter at least one ability." + `</div>`;
     return;
   }
 

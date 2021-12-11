@@ -14,7 +14,13 @@ router.get('/', (req, res) => {
         .then(dbPokemonData => {
           const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           // console.table(pokemons);
-          res.render('homepage', { pokemons, loggedIn: req.session.loggedIn, user: req.session.user_id });
+          res.render('homepage', {
+            pokemons,
+            loggedIn: req.session.loggedIn,
+            user: req.session.user_id,
+            currentUser: req.session.username
+          });
+          console.log(req.session.username);
         })
         .catch(err => {
           console.log(err);
@@ -33,15 +39,20 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/userChanges', (req, res) => {
+  res.redirect('/userChanges');
+  res.render('userChanges');
+});
+
 router.get('/users/:id', (req, res) => {
     User.findOne({
       where: {
-        id: req.params.id
+        id: req.params.id,
       }
     })
     .then(dbUserData => {
       if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
+        res.status(404).json({ message: 'No user found with this id.' });
         return;
       }
       if (dbUserData.id != req.session.user_id) {
@@ -54,7 +65,8 @@ router.get('/users/:id', (req, res) => {
     res.render('edit-users', {
       users,
       user: req.session.user_id,
-      loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn,
+      currentUser: req.session.username
     });
   });
 });
@@ -87,7 +99,69 @@ router.get('/pokemon/:id', (req, res) => {
         pokemons,
         loggedIn: req.session.loggedIn,
         owner,
-        user: req.session.user_id
+        user: req.session.user_id,
+        currentUser: req.session.username
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
+  router.get('/find-users', (req, res) => {
+    User.findAll({
+      include: [
+        {
+          model: Pokemon,
+          attributes: ['name', 'type', 'type2', 'move1', 'move2', 'move3', 'move4', 'ability1', 'ability2', 'ability3']
+        }
+      ],
+      order: [
+        ['username', 'DESC'],
+      ]
+    })
+    .then(dbUserData => {
+      const users = dbUserData.reverse().map(users => users.get({ plain: true }));
+      console.log(users.username);
+      res.render('find-users', {
+        users,
+        loggedIn: req.session.loggedIn,
+        user: req.session.user_id,
+        currentUser: req.session.username
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
+  router.get('/find-users/:id', (req, res) => {
+    User.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          model: Pokemon,
+          attributes: ['name', 'type', 'type2', 'move1', 'move2', 'move3', 'move4', 'ability1', 'ability2', 'ability3'],
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            }
+          ]
+        }
+      ]
+    })
+    .then(dbUserData => {
+      const selectedUser = dbUserData.get({ plain: true });
+      console.log(selectedUser);
+      res.render('single-user', {
+        selectedUser,
+        loggedIn: req.session.loggedIn,
+        currentUser: req.session.username
       });
     })
     .catch(err => {

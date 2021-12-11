@@ -11,7 +11,7 @@ async function signupFormHandler(event) {
     }
     
     if (password.length < 4) {
-        alertEl.innerHTML = ` <div class="alertEl rounded">Password needs at least 4 characters!</div>`;
+        alertEl.innerHTML = ` <div class="alertEl rounded">Password needs at least 4 characters.</div>`;
         return;
     }
 
