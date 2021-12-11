@@ -39,6 +39,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/userChanges', (req, res) => {
+  res.redirect('/userChanges');
+  res.render('userChanges');
+});
+
 router.get('/users/:id', (req, res) => {
     User.findOne({
       where: {
