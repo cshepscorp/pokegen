@@ -1,0 +1,12 @@
+<div class="container padded-div">
+  <div class="row justify-content-center">
+    {{#if users.length}}
+      <h2 class="m-3">List of Users</h2>
+      <div class="list-group">
+        {{#each users}}
+        <a href="/find-users/{{id}}" class="list-group-item list-group-item-action">{{username}}</a>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</div>
