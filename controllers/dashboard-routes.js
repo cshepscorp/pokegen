@@ -18,7 +18,7 @@ router.get('/', withAuth, (req, res) => {
         ]
       })
         .then(dbPokemonData => {
-          const pokemons = dbPokemonData.map(pokemon => pokemon.get({ plain: true }));
+          const pokemons = dbPokemonData.reverse().map(pokemon => pokemon.get({ plain: true }));
           console.table(pokemons);
           // user won't be able to get to the dashboard page unless they're logged in
           res.render('dashboard', { pokemons,
